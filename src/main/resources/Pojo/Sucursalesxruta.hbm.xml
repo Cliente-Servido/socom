@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Sucursalesxruta" table="sucursalesxruta" catalog="socom" optimistic-lock="version">
+        <id name="idSucursalesxRuta" type="java.lang.Integer">
+            <column name="idSucursalesxRuta" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="rutas" class="Pojo.Rutas" fetch="select">
+            <column name="idRuta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursalesByDestino" class="Pojo.Sucursales" fetch="select">
+            <column name="destino" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursalesByOrigen" class="Pojo.Sucursales" fetch="select">
+            <column name="origen" not-null="true" />
+        </many-to-one>
+        <property name="secuencia" type="java.lang.Integer">
+            <column name="secuencia" />
+        </property>
+    </class>
+</hibernate-mapping>

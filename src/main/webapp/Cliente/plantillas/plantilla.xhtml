@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <h:head>
+        <title>Seguro Envíos</title>
+        <h:outputStylesheet library="css" name="cliente.css"/>
+
+    </h:head>
+
+    <h:body >
+        <p:layout fullPage="true" id="container">
+     
+        <p:layoutUnit id="header" position="north">
+           
+            <!--<img src="../resources/images/logoEmpresa.png" width="220" height="169" alt="logoEmpresa"/>!-->
+            <h:panelGrid columns="2">
+            
+                <h:graphicImage value="../resources/images/logoEmpresa.png"/>
+                <h:panelGroup>
+                    <h1>Seguro Envios</h1>
+                    <h2>Encomiendas y envíos</h2>                             
+                    <p>Atendido por sus propios dueños</p>
+                </h:panelGroup>
+            </h:panelGrid>
+
+        </p:layoutUnit>
+        <p:layoutUnit position="south" id="pie">
+            <p:outputLabel value="sdf safds dfsdfsdfsd"/>
+        </p:layoutUnit>
+            
+        <p:layoutUnit position="west" id="menuPrincipal">
+            <h:panelGrid >
+                <h:link outcome="/Cliente/index" value="Inicio"/>
+                <h:link outcome="/Cliente/consultasucursal" value="Consultar Sucursales"/>
+                <h:link outcome="/Cliente/seguimientoenvio" value="Seguimiento de Envío"/>
+                <h:link outcome="/Cliente/consultaservicio" value="Consultar costos y servicios"/>
+            </h:panelGrid>
+        </p:layoutUnit>
+            
+        <p:layoutUnit position="center" id="formulario">
+            <p:panel>
+                <ui:insert name="content"> 2222222222222</ui:insert>
+            </p:panel>
+        </p:layoutUnit>
+                
+
+        </p:layout>
+    </h:body>
+</html>
+

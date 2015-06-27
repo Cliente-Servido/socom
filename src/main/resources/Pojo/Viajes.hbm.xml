@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Viajes" table="viajes" catalog="socom" optimistic-lock="version">
+        <id name="idViaje" type="java.lang.Integer">
+            <column name="idViaje" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="camiones" class="Pojo.Camiones" fetch="select">
+            <column name="idCamion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursalesByDestino" class="Pojo.Sucursales" fetch="select">
+            <column name="destino" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursalesByOrigen" class="Pojo.Sucursales" fetch="select">
+            <column name="origen" not-null="true" />
+        </many-to-one>
+        <property name="fechaSalida" type="date">
+            <column name="fechaSalida" length="10" />
+        </property>
+        <property name="fechaLlegada" type="date">
+            <column name="fechaLlegada" length="10" />
+        </property>
+        <property name="horaSalida" type="string">
+            <column name="horaSalida" length="5" />
+        </property>
+        <property name="horaLlegada" type="string">
+            <column name="horaLlegada" length="5" />
+        </property>
+        <set name="paqueteses" table="paquetesxviaje" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idViaje" not-null="true" />
+            </key>
+            <many-to-many entity-name="Pojo.Paquetes">
+                <column name="idPaquete" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

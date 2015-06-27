@@ -1,0 +1,44 @@
+body{
+   
+}
+#container{
+   background-color: midnightblue;
+   width: 100%;
+   height: auto;
+}
+#header{
+    background-color: midnightblue;
+    
+}
+#header img{
+
+}
+#menuPrincipal{
+    background-color: #9999ff;
+    width: 30%;
+    padding: 8px;
+}
+
+
+#menuPrincipal a:link,#menuPrincipal a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+  #menuPrincipal tr{
+    height: 3em;
+
+}
+
+#formulario{
+    height: 100%;
+    width: 70%;
+    padding: 10px;
+    
+}
+#pie{
+    background-color: yellow;
+    text-align: center;
+}
+ 

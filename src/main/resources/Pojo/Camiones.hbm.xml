@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Camiones" table="camiones" catalog="socom" optimistic-lock="version">
+        <id name="idCamion" type="java.lang.Integer">
+            <column name="idCamion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="rutas" class="Pojo.Rutas" fetch="select">
+            <column name="idRuta" />
+        </many-to-one>
+        <property name="marca" type="string">
+            <column name="marca" length="12" />
+        </property>
+        <property name="modelo" type="string">
+            <column name="modelo" length="60" />
+        </property>
+        <property name="dominio" type="string">
+            <column name="dominio" length="6" />
+        </property>
+        <property name="anio" type="java.lang.Integer">
+            <column name="anio" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="60" />
+        </property>
+        <set name="viajeses" table="viajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCamion" not-null="true" />
+            </key>
+            <one-to-many class="Pojo.Viajes" />
+        </set>
+    </class>
+</hibernate-mapping>

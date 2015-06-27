@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Servicios" table="servicios" catalog="socom" optimistic-lock="version">
+        <id name="idServicio" type="java.lang.Integer">
+            <column name="idServicio" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="60" />
+        </property>
+        <property name="costokg" type="java.lang.Float">
+            <column name="costokg" precision="12" scale="0" />
+        </property>
+        <property name="costoseguro" type="java.lang.Float">
+            <column name="costoseguro" precision="12" scale="0" />
+        </property>
+        <property name="montoasegurado" type="java.lang.Float">
+            <column name="montoasegurado" precision="12" scale="0" />
+        </property>
+        <set name="paqueteses" table="paquetes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idServicio" />
+            </key>
+            <one-to-many class="Pojo.Paquetes" />
+        </set>
+    </class>
+</hibernate-mapping>

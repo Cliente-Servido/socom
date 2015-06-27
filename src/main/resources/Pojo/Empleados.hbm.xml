@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Empleados" table="empleados" catalog="socom" optimistic-lock="version">
+        <id name="idEmpleado" type="java.lang.Integer">
+            <column name="idEmpleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="sucursales" class="Pojo.Sucursales" fetch="select">
+            <column name="idSucursal" not-null="true" />
+        </many-to-one>
+        <property name="apellido" type="string">
+            <column name="apellido" length="20" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="legajo" type="java.lang.Integer">
+            <column name="legajo" />
+        </property>
+        <property name="cargo" type="string">
+            <column name="cargo" length="15" />
+        </property>
+        <property name="area" type="string">
+            <column name="area" length="15" />
+        </property>
+        <property name="fechaAlta" type="date">
+            <column name="fechaAlta" length="10" />
+        </property>
+        <set name="facturases" table="facturas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmpleado" />
+            </key>
+            <one-to-many class="Pojo.Facturas" />
+        </set>
+        <set name="estadoses" table="estados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmpleado" />
+            </key>
+            <one-to-many class="Pojo.Estados" />
+        </set>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmpleado" />
+            </key>
+            <one-to-many class="Pojo.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

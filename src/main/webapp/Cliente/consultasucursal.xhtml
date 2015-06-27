@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./plantillas/plantilla.xhtml">
+
+            <ui:define name="top">
+               
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:growl id="msgs" showDetail="true" />
+ 
+                    <p:panel header="Select a Location" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="provincia" value="Provincia: " />
+                        <p:selectOneMenu id="provincia" value="#{consultarSucursales.provinciaSeleccionada}"  style="width:150px">
+                            <p:ajax listener="#{consultarSucursales.cambioProvincia()}" update="localidad"/>
+                            <f:selectItem itemLabel="Seleccione provincia" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{consultarSucursales.mapaProvincia}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="localidad" value="Localidad: " />
+                        <p:selectOneMenu id="localidad" value="#{consultarSucursales.localidadSeleccionada}"  style="width:150px">
+                            <p:ajax listener="#{consultarSucursales.listarSucursales()}" update="sucursales"/>
+                            <f:selectItem itemLabel="Seleccione localidad" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{consultarSucursales.mapaLocalidades}" />
+                        </p:selectOneMenu>
+                        
+                        
+                        
+                        
+                    </h:panelGrid>
+ 
+                    <p:separator />
+                    <p:dataTable id="sucursales" var="suc" value="#{consultarSucursales.listaSucu}">
+                            <p:column headerText="Direccion">
+                                <h:outputLabel value="#{suc.direccion}"/>
+                            </p:column>
+                            <p:column headerText="Horario">
+                                <h:outputLabel value="#{suc.horario}"/>
+                            </p:column>
+                        
+                        </p:dataTable>
+                   
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
