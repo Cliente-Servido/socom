@@ -63,7 +63,7 @@ public class EmpleadoImplements implements EmpleadoDao{
     public void insertarEmpleado(Empleados empleado){
     Session session=null;
         try{
-            session=HibernateUtil.getSessionFactory().getCurrentSession();
+            session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(empleado);
             session.getTransaction().commit();

@@ -14,7 +14,6 @@ import Pojo.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import Pojo.Sucursales;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 
@@ -29,7 +28,7 @@ public class SesionGerenteBean implements Serializable {
     private String contrasenia;
     private Usuarios claseUsuario=null;
     private boolean estalogeado=false;
-
+    private Sucursales claseSucursal=null;
     public boolean isEstalogeado() {
         return estalogeado;
     }
@@ -63,7 +62,6 @@ public class SesionGerenteBean implements Serializable {
      public String validarUsuarioContrasenia() {
         boolean valid = this.validar();
         if (valid) { HttpSession httpSession=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-                    httpSession.setAttribute("usuario",this.claseUsuario);
             this.estalogeado=true;
             return "indexGerente";
         } else {
@@ -89,27 +87,27 @@ public class SesionGerenteBean implements Serializable {
         Session session= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			String hql = "FROM Usuarios WHERE usuario ='" + getUsuario()
-					+ "' and pass ='" + getContrasenia()+ "'";
+			String hql = "FROM Usuarios WHERE usuario = '" + this.getUsuario()
+					+ "' and pass = '" + this.getContrasenia()+ "'";
 			Query query = session.createQuery(hql);
 
 			if (!query.list().isEmpty()) {
 				claseUsuario = (Usuarios) query.list().get(0);
+                                
 			}
 
 		} catch (Exception e) {
 			throw e;
 		}finally{
-        if(session!=null){
-            session.close();}
-                }
-                if (claseUsuario==null){
-                return false; }
-                else {
-                this.claseUsuario=claseUsuario;
-                return true;
-                }
+                if(session==null){
+                session.close();
                 
+                }}
+                if(claseUsuario!=null){
+                    HttpSession miSession=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    miSession.setAttribute("usuario", claseUsuario);
+                    return true;}else return false;
+                    
                 }
   
     

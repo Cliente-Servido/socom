@@ -9,6 +9,14 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <filter>
+        <filter-name>filtroGerente</filter-name>
+        <filter-class>filtros.FiltroUrl</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filtroGerente</filter-name>
+        <url-pattern>/faces/Gerente/*</url-pattern>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>

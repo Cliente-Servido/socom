@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package filtros;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,29 +20,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author Wolverine20
  */
-
-
+@WebFilter
 public class FiltroUrl implements Filter{
 
-    FilterConfig filterConfig;
+
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        this.filterConfig=filterConfig;
+       
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req=(HttpServletRequest) request;
         HttpServletResponse res=(HttpServletResponse) response;
-        HttpSession session=req.getSession(false);
+        HttpSession session=req.getSession();
+        System.out.println("paso por el filtro");
         
         String requestUrl=req.getRequestURL().toString();
         
         String[] urlPermitidaSinSesion=new String[]
         {
           
-            "faces/index.xhtml"
+            "faces/Gerente/index.xhtml"
         };
         
         boolean redireccionarPeticion;
@@ -69,7 +68,7 @@ public class FiltroUrl implements Filter{
         
         if(redireccionarPeticion)
         {
-            res.sendRedirect(req.getContextPath()+"/faces/index.xhtml");
+            res.sendRedirect(req.getContextPath()+"/faces/Gerente/index.xhtml");
         }
         else
         {
@@ -79,7 +78,7 @@ public class FiltroUrl implements Filter{
 
     @Override
     public void destroy() {
-        this.filterConfig=null;
+       
     }
     
 }

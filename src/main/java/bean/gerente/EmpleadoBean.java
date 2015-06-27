@@ -8,6 +8,7 @@ import Pojo.Empleados;
 import Pojo.Usuarios;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -42,14 +43,20 @@ public class EmpleadoBean implements Serializable {
     }
     EmpleadoDao linkDAO= new EmpleadoImplements();
     
+    @PostConstruct
     public void init() {
+        
+        empleado = new Empleados();
+        linkDAO= new EmpleadoImplements();
+        System.out.println("Llego hasta acà 1");
+        HttpSession miSesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
+        this.empleado.setSucursales(usuario.getGerentes().getSucursales());
     }
     
+    
     public void insertar(){
-        HttpSession sessionUsuario=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Usuarios usuario =(Usuarios)sessionUsuario.getAttribute("usuario");
-        System.out.println(usuario.getIdUsuario());
-        this.empleado.setSucursales(usuario.getGerentes().getSucursales());
+        
         linkDAO.insertarEmpleado(empleado);
         empleado= new Empleados(); }
     
@@ -70,7 +77,7 @@ public class EmpleadoBean implements Serializable {
     }
 
     public List<Empleados> getEmpleados() {
-        System.out.println("Llego hasta acà 2");
+        System.out.println("Llego hasta acÃ  2");
         empleados=linkDAO.mostrarEmpleados();
         
         System.out.println("Empleados: " + empleados.size());
