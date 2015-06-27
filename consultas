@@ -12,3 +12,5 @@ insert into paquetes values (1,5.0,200,1,1,1,1,"pepe",36000000,010101,123456,"pe
 
 insert into gerentes values (1,"perez","pepe",1234,1);
 insert into usuarios (idUsuario,usuario,pass,idGerente)values (1,"socom","1234",1);
+insert into usuarios (idUsuario,usuario,pass,idGerente)values (65,"sahlawi",sha2("1234",256),1);
+
