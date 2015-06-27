@@ -1,1 +1,14 @@
+INSERT INTO servicios values (1,"nomarl","envio normal",12.0,6.0,10.0);
 
+INSERT INTO servicios values (1,"nomarl","envio normal",12.0,6.0,10.0);
+
+insert into rutas values (1,1,1,"ruta1",1);
+insert into camiones values (1,"Volvo",2014, "abc123",2014,"camion 1",1);
+
+insert into clientes values (1,"Perez","Pablo","french 123",123456,"plabo@algo.com");
+insert into facturas values(1,"2015/2/5",200,1,1);
+
+insert into paquetes values (1,5.0,200,1,1,1,1,"pepe",36000000,010101,123456,"pepe@algo.com");
+
+insert into gerentes values (1,"perez","pepe",1234,1);
+insert into usuarios (idUsuario,usuario,pass,idGerente)values (1,"socom","1234",1);
