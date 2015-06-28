@@ -9,8 +9,10 @@ import Pojo.Usuarios;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 /**
@@ -18,8 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author Wolverine20
  */
 @ManagedBean
-@RequestScoped
-
+@ViewScoped
 public class EmpleadoBean implements Serializable {
 
     Empleados empleado= new Empleados();
@@ -92,6 +93,13 @@ public class EmpleadoBean implements Serializable {
     public void buscar(){
         if (linkDAO.getEmpleado(getEmpleado().getLegajo()) == null) {
         System.out.println("nulo");
+        setEmpleadosAct(null);
+        /*devuelve el mensaje que el usuario no se encontro */
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "No se encontro legajo",
+                            "Por favor ingrese nuevo legajo"));
     }
         
         if (linkDAO.getEmpleado(getEmpleado().getLegajo()) != null ) {
