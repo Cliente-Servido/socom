@@ -65,7 +65,7 @@ public class EmpleadoImplements implements EmpleadoDao{
         try{
             session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(empleado);
+            session.merge(empleado);
             session.getTransaction().commit();
     }catch(HibernateException e){
         System.out.println(e.getMessage());
