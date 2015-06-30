@@ -36,26 +36,26 @@
                             <p:menuitem value="inicio" outcome="indexGerente" />
                         </p:submenu>
                         <p:submenu label="Empleados">
-                            <p:menuitem value="Empleados" outcome="empleado" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Alta" outcome="alta_empleados" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Baja" outcome="empleado" actionListener="#{menuView.update}"   />
-                            <p:menuitem value="Modificacion" outcome="empleado" actionListener="#{menuView.update}"   />
+                            <p:menuitem value="Empleados" outcome="empleado"  />
+                            <p:menuitem value="Alta" outcome="alta_empleados" />
+                            <p:menuitem value="Baja" outcome="empleado"   />
+                            <p:menuitem value="Modificacion" outcome="empleado"    />
                         </p:submenu>
                         <p:submenu label="Camiones">
-                            <p:menuitem value="Camiones" outcome="camion" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Seguimiento" outcome="seguimiento" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Informe" outcome="informe" actionListener="#{menuView.delete}"/>
+                            <p:menuitem value="Camiones" outcome="camion"  />
+                            <p:menuitem value="Seguimiento" outcome="seguimiento" />
+                            <p:menuitem value="Informe" outcome="informe" />
                         </p:submenu>
                          <p:submenu label="Servicios">
-                             <p:menuitem value="Servicios" outcome="servicios" actionListener="#{menuView.save}"  />
-                             <p:menuitem value="Crear Servicio" outcome="nuevoServicio" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Modificar Servicio" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Eliminar Servicio" actionListener="#{menuView.delete}"/>
+                             <p:menuitem value="Servicios" outcome="servicios"   />
+                             <p:menuitem value="Crear Servicio" outcome="nuevoServicio" />
+                            <p:menuitem value="Modificar Servicio" />
+                            <p:menuitem value="Eliminar Servicio" />
                         </p:submenu>
                        
                         <p:submenu label="Paquetes" >
-                            <p:menuitem value="Actualizar Estado" outcome="actualizar_paquete" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Facturas" outcome="facturas"  actionListener="#{menuView.save}"/>
+                            <p:menuitem value="Actualizar Estado" outcome="actualizar_paquete"/>
+                            <p:menuitem value="Facturas" outcome="facturas" />
                         </p:submenu>
                     </p:panelMenu>
                 </h:form>
