@@ -33,7 +33,7 @@
                     <p:growl autoUpdate="true"/>
                     <p:panelMenu id="menu">
                         <p:submenu label="incio">
-                            <p:menuitem value="inicio" outcome="index" />
+                            <p:menuitem value="inicio" outcome="indexGerente" />
                         </p:submenu>
                         <p:submenu label="Empleados">
                             <p:menuitem value="Empleados" outcome="empleado" actionListener="#{menuView.save}"  />
@@ -78,89 +78,18 @@
                                     action="#{sesionGerenteBean.logout()}" />
                                  </p:panelGrid>
                             </h:form>
-                    </p:panelGrid>>
+                    </p:panelGrid>
                 </p:layoutUnit>
-                
-                <p:layoutUnit position="center" >
-                    <h3>FACTURAS</h3>
-                    
-                    
-                                      
-                    
-                    
-  <h:form id="formMostrar">
-      <p:dataTable var="fac" value="#{facturaBean.facturas}"
-                         emptyMessage="No hay empleados disponibless"
-paginator="true" rows="10" paginatorPosition="top"
-paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
-{PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-rowsPerPageTemplate="10"
-                         >
-                <p:column headerText="Cliente">
-                    
-                </p:column>
-               
-                <p:column headerText="Fecha">
-                    <h:outputText value="#{fac.fecha}"/>
-                </p:column>
-                <p:column headerText="monto">
-                    <h:outputText value="#{fac.monto}"/>
-                </p:column>
-                
-                <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"   >
-                        <f:setPropertyActionListener target="#{facturaBean.factura}" value="#{fac}"/>
-                    </p:commandButton>
-                   
-                </p:column>
-                
-                <p:column headerText="Accion">
-                    <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();" >
-                        <f:setPropertyActionListener target="#{facturaBean.factura}" value="#{fac}" />
-                    </p:commandButton>
-                   
-                </p:column>
-                
-            </p:dataTable>
-            
-        </h:form>
-        
-        <p:dialog id="dlg" header="Modificar facturas" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200">
-            <h:form id="formModificar">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Monto factura"/>
-                    <p:inputText value="#{facturaBean.factura.monto}" />
-
-                </p:panelGrid>
-                <p:commandButton actionListener="#{facturaBean.modificar()}" value="Modificar Factura"  
-                                 onclick="PF('dlgmodificar').hide();"/>
-            </h:form>
-        </p:dialog>
-        
-         <p:dialog id="dlg2" header="Eliminar Factura" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
-            <h:form id="formEliminar">
-               
-                <p:outputLabel value="¿Desea eliminar Factura?" />
-                
-                <p:commandButton actionListener="#{facturaBean.eliminar()}" value="Si"  
-                                 onclick="PF('dlgeliminar').hide();"/>
-                 <p:commandButton  value="No" 
-                                 onclick="PF('dlg2').hide();"/>
-            </h:form>
-        </p:dialog>
-
-                    
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <h3>Gestion Recorrido</h3>
+                        
+         
+                    </h:form> 
                 </p:layoutUnit>
+
+                
             </p:layout>
         </h:body>
     </f:view>
 </html>
-
-
-
-
-
-
-

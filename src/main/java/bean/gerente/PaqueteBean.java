@@ -2,6 +2,7 @@ package bean.gerente;
 
 import DAO.PaqueteDao;
 import DAO.PaqueteImplements;
+import Pojo.Estados;
 import Pojo.Paquetes;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class PaqueteBean implements Serializable {
    Paquetes paquete;
     List<Paquetes> paquetes;
     List<Paquetes> paquetesAct;
+    Estados estado;
 
     public List<Paquetes> getPaquetesAct() {
         return paquetesAct;

@@ -4,6 +4,7 @@ import DAO.CamionDao;
 import DAO.CamionImplements;
 import Persistencia.HibernateUtil;
 import Pojo.Camiones;
+import Pojo.Rutas;
 import Pojo.Viajes;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class CamionBean implements Serializable {
     List<Camiones> camiones;
     List<Viajes> viajes= null;
     List<Camiones> camionesAct;
-
+       
     public List<Camiones> getCamionesAct() {
         return camionesAct;
     }
