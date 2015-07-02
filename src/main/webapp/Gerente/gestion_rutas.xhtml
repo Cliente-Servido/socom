@@ -33,7 +33,7 @@
                     <p:growl autoUpdate="true"/>
                     <p:panelMenu id="menu">
                         <p:submenu label="incio">
-                            <p:menuitem value="inicio" outcome="index" />
+                            <p:menuitem value="inicio" outcome="indexGerente" />
                         </p:submenu>
                         <p:submenu label="Empleados">
                             <p:menuitem value="Empleados" outcome="empleado" actionListener="#{menuView.save}"  />
@@ -78,89 +78,86 @@
                                     action="#{sesionGerenteBean.logout()}" />
                                  </p:panelGrid>
                             </h:form>
-                    </p:panelGrid>>
+                    </p:panelGrid>
                 </p:layoutUnit>
-                
-                <p:layoutUnit position="center" >
-                    <h3>FACTURAS</h3>
-                    
-                    
-                                      
-                    
-                    
-  <h:form id="formMostrar">
-      <p:dataTable var="fac" value="#{facturaBean.facturas}"
-                         emptyMessage="No hay empleados disponibless"
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <h3>Gestion Rutas</h3>
+                        <h3> </h3>
+                        <h:form id="formInsertarRuta">
+                        <p:panelGrid columns="2"  >
+                   
+                            <p:outputLabel value="Definir ID sucursal origen"/>
+                            <p:inputText value="#{rutaBean.ori}"/>
+                            
+                            <p:outputLabel value="Definir ID sucursal destino"/>
+                            <p:inputText value="#{rutaBean.des}"/>
+                            
+                            <p:outputLabel value="Descripcion"/>
+                            <p:inputText value="#{rutaBean.ruta.descripcion}" />
+                                                    
+                        </p:panelGrid>
+                        <h:commandButton value="Ingresar ruta" action="#{rutaBean.insertar()}" />
+                                                
+                    </h:form>
+                        
+                            <p:panelGrid columns="2"  >
+                                <p:outputLabel value="ID ruta"/>
+                                <p:inputText value="#{rutaBean.ruta.idRuta}" />
+                                <p:commandButton actionListener="#{rutaBean.buscar()}" value="Buscar"   />
+                            </p:panelGrid>
+                        
+                        
+                        <h:form id="formMostrar">
+                            <p:dataTable var="rut" value="#{rutaBean.listaActualizada()}"
+                         emptyMessage="No hay rutas"
 paginator="true" rows="10" paginatorPosition="top"
 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
 rowsPerPageTemplate="10"
                          >
-                <p:column headerText="Cliente">
-                    
+                <p:column headerText="ID ruta">
+                    <h:outputText value="#{rut.idRuta}"/>
                 </p:column>
-               
-                <p:column headerText="Fecha">
-                    <h:outputText value="#{fac.fecha}"/>
+                <p:column headerText="sucursal origen">
+                    <h:outputText value="#{rut.sucursalesByOrigen.idSucursal}"/>
                 </p:column>
-                <p:column headerText="monto">
-                    <h:outputText value="#{fac.monto}"/>
+                <p:column headerText="sucursal destino">
+                    <h:outputText value="#{rut.sucursalesByDestino.idSucursal}"/>
                 </p:column>
-                
                 <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"   >
-                        <f:setPropertyActionListener target="#{facturaBean.factura}" value="#{fac}"/>
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  >
+                        <f:setPropertyActionListener target="#{rutaBean.ruta}" value="#{rut}" />
                     </p:commandButton>
                    
                 </p:column>
-                
-                <p:column headerText="Accion">
-                    <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();" >
-                        <f:setPropertyActionListener target="#{facturaBean.factura}" value="#{fac}" />
-                    </p:commandButton>
-                   
-                </p:column>
-                
+                             
             </p:dataTable>
             
         </h:form>
         
-        <p:dialog id="dlg" header="Modificar facturas" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200">
+        <p:dialog id="dlg" header="Modificar ruta" showEffect="explode" hideEffect="bounce"
+                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Monto factura"/>
-                    <p:inputText value="#{facturaBean.factura.monto}" />
-
+                    <p:outputLabel value="Ruta origen"/>
+                    <p:inputText value="#{rutaBean.ruta.sucursalesByOrigen.idSucursal}" />
+                    <p:outputLabel value="Ruta destino"/>
+                    <p:inputText value="#{rutaBean.ruta.sucursalesByDestino.idSucursal}" />
+                    <p:outputLabel value="descripcion"/>
+                    <p:inputText value="#{rutaBean.ruta.descripcion}" />
                 </p:panelGrid>
-                <p:commandButton actionListener="#{facturaBean.modificar()}" value="Modificar Factura"  
+                <p:commandButton actionListener="#{rutaBean.modificar()}" value="Modificar ruta"  
                                  onclick="PF('dlgmodificar').hide();"/>
             </h:form>
         </p:dialog>
         
-         <p:dialog id="dlg2" header="Eliminar Factura" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
-            <h:form id="formEliminar">
-               
-                <p:outputLabel value="¿Desea eliminar Factura?" />
-                
-                <p:commandButton actionListener="#{facturaBean.eliminar()}" value="Si"  
-                                 onclick="PF('dlgeliminar').hide();"/>
-                 <p:commandButton  value="No" 
-                                 onclick="PF('dlg2').hide();"/>
-            </h:form>
-        </p:dialog>
-
-                    
+         
+                    </h:form> 
                 </p:layoutUnit>
+
+                
             </p:layout>
         </h:body>
     </f:view>
 </html>
-
-
-
-
-
-
-

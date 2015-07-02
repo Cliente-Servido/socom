@@ -49,7 +49,7 @@ public class EmpleadoBean implements Serializable {
         
         empleado = new Empleados();
         linkDAO= new EmpleadoImplements();
-        System.out.println("Llego hasta acà 1");
+
         HttpSession miSesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
         this.empleado.setSucursales(usuario.getGerentes().getSucursales());
