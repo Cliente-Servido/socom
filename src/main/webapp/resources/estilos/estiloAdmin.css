@@ -1,0 +1,35 @@
+#header{
+    background-image: url(imagenes/fondo_header.jpg);
+    background-size: 100% 98%;
+    repeat:no-repeat;
+    border:2% solid midnightblue;
+    height: 200px;
+    width: 100%;
+    
+}
+#menu{
+    height: 500px;
+    width: 300px;
+}
+#container{
+    width: 100%;
+    height: 1700px;
+}
+#logo{
+    background-image: url(imagenes/logoEmpresa.png);
+    background-size: 100% 98%;
+    height: 192px;
+    width:192px;
+    margin-top:0px;
+    border:2px solid khaki;
+}
+#footer{
+    background-image:url(imagenes/fondo_Camion.jpg);
+    background-repeat: repeat;
+    width: 100%;
+   
+}
+
+#formInsertarEmpleado {
+    display:list-item;
+}
