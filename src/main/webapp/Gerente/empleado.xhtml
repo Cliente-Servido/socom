@@ -78,7 +78,7 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="center" >
-                    <h3>INGRESAR EMPLEADO</h3>
+                    <h3>EMPLEADOS</h3>
                     
                     
                                       
@@ -92,7 +92,7 @@ paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
 rowsPerPageTemplate="10"
                          >
-                <p:column headerText="Legajo empleado">
+                <p:column headerText="Legajo">
                     <h:outputText value="#{emp.legajo}"/>
                 </p:column>
                 <p:column headerText="Nombre">
@@ -100,6 +100,9 @@ rowsPerPageTemplate="10"
                 </p:column>
                 <p:column headerText="Apellido">
                     <h:outputText value="#{emp.apellido}"/>
+                </p:column>
+                <p:column headerText="Cargo">
+                    <h:outputText value="#{emp.cargo}"/>
                 </p:column>
                 <p:column headerText="Accion">
                     <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificar" >
@@ -123,11 +126,11 @@ rowsPerPageTemplate="10"
                     widgetVar="dlgmodificar"  resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre de la Empleado"/>
-                <p:inputText value="#{empleadoBean.empleado.nombre}" />
+                    <p:outputLabel value="cargo del Empleado"/>
+                    <p:inputText value="#{empleadoBean.empleado.cargo}" />
                 
-                <p:outputLabel value="Apellido de la Empleado"/>
-                <p:inputText value="#{empleadoBean.empleado.apellido}" />
+                <p:outputLabel value="Area del Empleado"/>
+                <p:inputText value="#{empleadoBean.empleado.area}" />
                 </p:panelGrid>
                 <p:commandButton actionListener="#{empleadoBean.modificar()}" value="Modificar empleado"  update=":formMostrar" 
                                  onclick="PF('dlgmodificar').hide();"/>

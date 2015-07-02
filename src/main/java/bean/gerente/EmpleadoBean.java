@@ -59,7 +59,12 @@ public class EmpleadoBean implements Serializable {
     public void insertar(){
         
         linkDAO.insertarEmpleado(empleado);
-        empleado= new Empleados(); }
+        empleado= new Empleados();
+        FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "El empleado fue añadido con exito" , "No se puedo añadir empleado"));
+    }
     
     public void modificar(){
         linkDAO.modificarEmpleado(empleado);
@@ -75,7 +80,7 @@ public class EmpleadoBean implements Serializable {
 
     public void setEmpleado(Empleados empleado) {
         this.empleado = empleado;
-    }
+}
 
     public List<Empleados> getEmpleados() {
         System.out.println("Llego hasta acÃ  2");
