@@ -14,3 +14,45 @@ insert into gerentes values (1,"perez","pepe",1234,1);
 insert into usuarios (idUsuario,usuario,pass,idGerente)values (1,"socom","1234",1);
 insert into usuarios (idUsuario,usuario,pass,idGerente)values (65,"sahlawi",sha2("1234",256),1);
 
+insert into Localidades (idProvincia,nombre) values(1,"Empedrado" );
+insert into Localidades (idProvincia,nombre) values(1,"Goya" );
+insert into Localidades (idProvincia,nombre) values(1,"San Luis" );
+insert into Localidades (idProvincia,nombre) values(1,"Disneylandia" );
+insert into Localidades (idProvincia,nombre) values(1,"tortalandia" );
+insert into Localidades (idProvincia,nombre) values(1,"Paso de los Libres" );
+insert into Localidades (idProvincia,nombre) values(1,"Santo Tome" );
+insert into Localidades (idProvincia,nombre) values(1,"Curuzu" );
+
+
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"carlos pellegrino 1992","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"alberdi","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"megasucursal","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"megaman","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"uruguay 19992","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"Frondizi 1231","de 8hs a 21hs","otra Sucursal");
+insert into Sucursales (idLocalidad,direccion,horario,descripcion) values (2,"Paraguay 2324","de 8hs a 21hs","otra Sucursal");
+
+insert into Rutas (origen,destino,cantidadSucursales) values (1,4,4);
+
+
+select * from sucursalesxruta;
+insert into Rutas (origen,destino,cantidadSucursales) values (1,7,7);
+insert into Rutas (origen,destino,cantidadSucursales) values (4,7,3);
+insert into Rutas (origen,destino,cantidadSucursales) values (5,7,2);
+
+
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(1,1,2,1);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(1,2,3,2);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(1,3,4,3);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,1,2,1);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,2,3,2);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,3,4,3);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,4,5,4);
+
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,5,6,5);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(2,6,7,6);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(3,4,5,1);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(3,5,6,2);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(3,6,7,3);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(4,5,6,1);
+insert into sucursalesxruta (idRuta,origen,destino,secuencia) values(4,6,7,2);
