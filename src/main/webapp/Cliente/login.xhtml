@@ -1,14 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./plantillas/plantilla.xhtml">
 
             <ui:define name="content">
-                content
+                <h:form>
+                    <p:growl id="mensageGeneral" showDetail="true" sticky="false"/>
+                    <h:panelGrid columns="2" >
+                        <h:outputLabel value="usuario"/>
+                        <h:inputText value="#{sesionClienteBean.usuario}" required="true"/>
+                        <h:outputLabel value="contraseña"/>
+                        <h:inputSecret value="#{sesionClienteBean.contrasenia}" required="true"/>
+                        <h:commandButton value="ok" action="#{sesionClienteBean.validarUsuarioContrasenia()}"/>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
 
         </ui:composition>
