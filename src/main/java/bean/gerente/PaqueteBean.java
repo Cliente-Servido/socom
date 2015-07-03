@@ -2,6 +2,7 @@ package bean.gerente;
 
 import DAO.PaqueteDao;
 import DAO.PaqueteImplements;
+import Persistencia.HibernateUtil;
 import Pojo.Estados;
 import Pojo.Paquetes;
 
@@ -11,6 +12,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 
 /**
@@ -21,10 +25,21 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class PaqueteBean implements Serializable {
 
-   Paquetes paquete;
+    Paquetes paquete;
     List<Paquetes> paquetes;
     List<Paquetes> paquetesAct;
     Estados estado;
+    Integer idEstado;
+
+    public Integer getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    
 
     public List<Paquetes> getPaquetesAct() {
         return paquetesAct;
@@ -100,5 +115,25 @@ public class PaqueteBean implements Serializable {
           return getPaquetesAct();
       }
       }
-    
+       /**
+ *
+ * 
+     public void asignarEstado(){
+        Estados estado1=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Estados e WHERE e.idEstado = :idEstado");
+        query.setParameter("idEstado", idEstado);
+        estado1 = (Estados)query.uniqueResult();
+        paquete.setEstadoses(estado1);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }}
+    */ 
 }

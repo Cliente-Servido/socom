@@ -152,8 +152,7 @@ public class RutaBean implements Serializable {
     }
     
     public void modificar(){
-        asignarOrigen();
-        asignarDestino();
+     
         linkDAO.modificarRuta(ruta);
         ruta= new Rutas();
     }

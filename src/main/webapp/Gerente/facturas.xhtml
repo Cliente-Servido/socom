@@ -59,6 +59,7 @@
                         </p:submenu>
                         <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -96,10 +97,12 @@ paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
 rowsPerPageTemplate="10"
                          >
-                <p:column headerText="Cliente">
-                    
+                <p:column headerText="ID Cliente">
+                    <h:outputText value="#{fac.clientes.idCliente}"/>
                 </p:column>
-               
+                <p:column headerText="ID Empleado">
+                    <h:outputText value="#{fac.empleados.idEmpleado}"/>
+                </p:column>
                 <p:column headerText="Fecha">
                     <h:outputText value="#{fac.fecha}"/>
                 </p:column>

@@ -59,6 +59,7 @@
                         </p:submenu>
                         <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -85,6 +86,7 @@
                     <h3>SEGUIMIENTO DE CAMION</h3>                    
                    
                     <h:form>
+                        <h4>Buscar camion</h4>
                         <p:panelGrid columns="2"  >
                             <p:outputLabel value="dominio de camion"/>
                             <p:inputText value="#{camionBean.camion.dominio}" />
@@ -92,71 +94,73 @@
                         </p:panelGrid>
                    
                     </h:form>
-                    
-        <h:form id="formMostrar">
-            <p:dataTable var="via" value="#{camionBean.viajes}"
-                         emptyMessage=""
+            <h:form id="formMostrar">
+      <h4 align="center">Camiones</h4>
+      <p:dataTable var="cam" value="#{camionBean.listaActualizada()}"
+                         emptyMessage="No hay camiones disponibles"
 paginator="true" rows="10" paginatorPosition="top"
 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
 rowsPerPageTemplate="10"
                          >
-                <p:column headerText="Nombre de servicio">
-                    <h:outputText value="#{via.camiones.dominio}"/>
+                <p:column headerText="ID de camion">
+                    <h:outputText value="#{cam.idCamion}"/>
                 </p:column>
-                <p:column headerText="Descripcion">
-                    <h:outputText value="#{via.sucursalesByOrigen.direccion}"/>
+                <p:column headerText="Dominio de camion">
+                    <h:outputText value="#{cam.dominio}"/>
                 </p:column>
-                <p:column headerText="Precio por kg de servicio">
-                    <h:outputText value="#{via.sucursalesByDestino.direccion}"/>
+                <p:column headerText="Marca">
+                    <h:outputText value="#{cam.marca}"/>
+                </p:column>
+                <p:column headerText="Modelo">
+                    <h:outputText value="#{cam.modelo}"/>
+                </p:column>
+                <p:column headerText="ID de ruta">
+                    <h:outputText value="#{cam.rutas.idRuta}"/>
                 </p:column>
                 <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();" update=":formModificar"  >
-                        <f:setPropertyActionListener target="#{servicioBean.servicio}" value="#{serv}"/>
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificar"  >
+                        <f:setPropertyActionListener target="#{camionBean.camion}" value="#{cam}"/>
                     </p:commandButton>
                    
                 </p:column>
                 
                 <p:column headerText="Accion">
                     <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();" >
-                        <f:setPropertyActionListener target="#{servicioBean.servicio}" value="#{serv}"/>
+                        <f:setPropertyActionListener target="#{camionBean.camion}" value="#{cam}"/>
                     </p:commandButton>
                    
                 </p:column>
                 
             </p:dataTable>
             
-            
         </h:form>
         
-        <p:dialog id="dlg" header="Modificar Servicio" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
+        <p:dialog id="dlg" header="Modificar Camion" showEffect="explode" hideEffect="bounce"
+                    widgetVar="dlgmodificar" resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre de servicio"/>
-                    <p:inputText value="#{servicioBean.servicio.nombre}" />
+                    <p:outputLabel value="Rutas"/>
+                    <p:inputText value="#{camionBean.camion.rutas}" />
                 
-                <p:outputLabel value="Descripcion"/>
-                <p:inputText value="#{servicioBean.servicio.descripcion}" />
                 </p:panelGrid>
-                <p:commandButton actionListener="#{servicioBean.modificar()}" value="Modificar Servico"  update=":formMostrar"  
+                <p:commandButton actionListener="#{camionBean.modificar()}" value="Modificar camion"   update=":formMostrar"
                                  onclick="PF('dlgmodificar').hide();"/>
             </h:form>
         </p:dialog>
         
-         <p:dialog id="dlg2" header="Eliminar Servicio" showEffect="explode" hideEffect="bounce"
+         <p:dialog id="dlg2" header="Eliminar camion" showEffect="explode" hideEffect="bounce"
                     widgetVar="dlgeliminar"  resizable="false" minWidth="200">
             <h:form id="formEliminar">
                
-                <p:outputLabel value="¿Desea eliminar al Servicio?" />
+                <p:outputLabel value="¿Desea eliminar Camion?" />
                 
-                <p:commandButton actionListener="#{servicioBean.eliminar()}" value="Si"  update=":formMostrar"
+                <p:commandButton actionListener="#{camionBean.eliminar()}" value="Si"   update=":formMostrar"
                                  onclick="PF('dlgeliminar').hide();"/>
                  <p:commandButton  value="No" 
                                  onclick="PF('dlg2').hide();"/>
             </h:form>
         </p:dialog>
-        
         
          
                 </p:layoutUnit>

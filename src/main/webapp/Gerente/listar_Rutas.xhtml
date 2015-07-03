@@ -69,7 +69,7 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="east" size="200" resizable="true" header="Ingresar" collapsible="true">
-                     <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
+                    <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
                             <h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{sesionGerenteBean.estalogeado eq false}" />
                             <h:form rendered="#{sesionGerenteBean.estalogeado}">	
                                 <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
@@ -83,83 +83,40 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="center" >
-                    <h3 align="center"> GESTION CAMIONES</h3>
-                     
-                        <h4>Insertar camion</h4>
-                        
-                        <h:form id="formInsertarCamion">
-                        <p:panelGrid columns="2"  >
-                            
-                            <p:outputLabel value="ID ruta"/>
-                            <p:inputText value="#{camionBean.idRuta}"/>
-                            
-                            <p:outputLabel value="Dominio"/>
-                            <p:inputText value="#{camionBean.camion.dominio}"/>
-                            
-                            <p:outputLabel value="Marca"/>
-                            <p:inputText value="#{camionBean.camion.marca}"/>
-                            
-                            <p:outputLabel value="Modelo"/>
-                            <p:inputText value="#{camionBean.camion.modelo}"/>
-                            
-                            <p:outputLabel value="Año"/>
-                            <p:inputText value="#{camionBean.camion.anio}"/>
-                             
-                            <p:outputLabel value="Descripcion"/>
-                            <p:inputText value="#{camionBean.camion.descripcion}"/>
-                            
-                        </p:panelGrid>
-                                <h:commandButton value="Ingresar ruta" action="#{camionBean.insertar()}" />
-                                              
-                    </h:form>
-                    <h:form>
-                        <h4>Buscar camion por patente</h4>
-                        <p:panelGrid columns="2"  >
-                            <p:outputLabel value="Patente"/>
-                            <p:inputText value="#{camionBean.camion.dominio}" />
-                            <p:commandButton actionListener="#{camionBean.busqueda()}" value="Buscar"  update=":formMostrar" />
-                        </p:panelGrid>
-                   
-                    </h:form>
+                    <h3 align="CENTER">RUTAS</h3>
                     
                     
                                       
                     
                     
   <h:form id="formMostrar">
-      <h4 align="center">Camiones</h4>
-      <p:dataTable var="cam" value="#{camionBean.listaActualizada()}"
-                         emptyMessage="No hay camiones disponibles"
+      <p:dataTable var="rut" value="#{rutaBean.listaActualizada()}"
+                         emptyMessage="No hay rutas disponibless"
 paginator="true" rows="10" paginatorPosition="top"
 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
 rowsPerPageTemplate="10"
                          >
-                <p:column headerText="ID de camion">
-                    <h:outputText value="#{cam.idCamion}"/>
-                </p:column>
-                <p:column headerText="Dominio de camion">
-                    <h:outputText value="#{cam.dominio}"/>
-                </p:column>
-                <p:column headerText="Marca">
-                    <h:outputText value="#{cam.marca}"/>
-                </p:column>
-                <p:column headerText="Modelo">
-                    <h:outputText value="#{cam.modelo}"/>
-                </p:column>
                 <p:column headerText="ID de ruta">
-                    <h:outputText value="#{cam.rutas.idRuta}"/>
+                    <h:outputText value="#{rut.idRuta}"/>
                 </p:column>
+                <p:column headerText="ID sucursal de origen">
+                    <h:outputText value="#{rut.sucursalesByOrigen.idSucursal}"/>
+                </p:column>
+                <p:column headerText="ID sucursal de destino">
+                    <h:outputText value="#{rut.sucursalesByDestino.idSucursal}"/>
+                </p:column>
+
                 <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificar"  >
-                        <f:setPropertyActionListener target="#{camionBean.camion}" value="#{cam}"/>
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificar" >
+                        <f:setPropertyActionListener target="#{rutaBean.ruta}" value="#{rut}"/>
                     </p:commandButton>
                    
                 </p:column>
                 
                 <p:column headerText="Accion">
                     <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();" >
-                        <f:setPropertyActionListener target="#{camionBean.camion}" value="#{cam}"/>
+                        <f:setPropertyActionListener target="#{rutaBean.ruta}" value="#{rut}" />
                     </p:commandButton>
                    
                 </p:column>
@@ -168,35 +125,53 @@ rowsPerPageTemplate="10"
             
         </h:form>
         
-        <p:dialog id="dlg" header="Modificar Camion" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar" resizable="false" minWidth="200">
+        <p:dialog id="dlg" header="Modificar Empleado" showEffect="explode" hideEffect="bounce"
+                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Rutas"/>
-                    <p:inputText value="#{camionBean.camion.rutas}" />
+                    <p:outputLabel value="ID sucursal de origen"/>
+                    <p:inputText value="#{rut.sucursalesByOrigen.idSucursal}" />
                 
+                <p:outputLabel value="ID sucursal de destino"/>
+                <p:inputText value="#{rut.sucursalesByDestino.idSucursal}" />
+                 <p:outputLabel value="Descripcion"/>
+                 <p:inputText value="#{rut.descripcion}" />
                 </p:panelGrid>
-                <p:commandButton actionListener="#{camionBean.modificar()}" value="Modificar camion"   update=":formMostrar"
+                <p:commandButton actionListener="#{rutaBean.modificar()}" value="Modificar empleado"  update=":formMostrar" 
                                  onclick="PF('dlgmodificar').hide();"/>
             </h:form>
         </p:dialog>
         
-         <p:dialog id="dlg2" header="Eliminar camion" showEffect="explode" hideEffect="bounce"
+         <p:dialog id="dlg2" header="Eliminar Empleado" showEffect="explode" hideEffect="bounce" 
                     widgetVar="dlgeliminar"  resizable="false" minWidth="200">
             <h:form id="formEliminar">
                
-                <p:outputLabel value="¿Desea eliminar Camion?" />
+                <p:outputLabel value="¿Desea eliminar la Ruta?" />
                 
-                <p:commandButton actionListener="#{camionBean.eliminar()}" value="Si"   update=":formMostrar"
+                <p:commandButton actionListener="#{rutaBean.eliminar()}" value="Si"  update=":formMostrar"
                                  onclick="PF('dlgeliminar').hide();"/>
-                 <p:commandButton  value="No" 
+                <p:commandButton  value="No" 
                                  onclick="PF('dlg2').hide();"/>
             </h:form>
         </p:dialog>
 
-                    
+                <h:form>
+                        <p:panelGrid columns="2"  >
+                                    <p:outputLabel value="Legajo"/>
+                                    <p:inputText value="#{rutaBean.ruta.idRuta}" />
+                                    <p:commandButton actionListener="#{rutaBean.buscar()}" value="Buscar" update=":formMostrar"  />
+                        </p:panelGrid>
+                </h:form>
+            
                 </p:layoutUnit>
             </p:layout>
         </h:body>
     </f:view>
 </html>
+
+
+
+
+
+
+

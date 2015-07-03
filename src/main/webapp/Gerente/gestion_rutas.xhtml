@@ -59,6 +59,7 @@
                         </p:submenu>
                         <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -82,8 +83,8 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h:form>
-                        <h3>Gestion Rutas</h3>
-                        <h3> </h3>
+                        <h3 align="center">Gestion de Rutas</h3>
+                        <h4> Formulario para ingresar ruta </h4>
                         <h:form id="formInsertarRuta">
                         <p:panelGrid columns="2"  >
                    
@@ -100,58 +101,7 @@
                         <h:commandButton value="Ingresar ruta" action="#{rutaBean.insertar()}" />
                                                 
                     </h:form>
-                        
-                            <p:panelGrid columns="2"  >
-                                <p:outputLabel value="ID ruta"/>
-                                <p:inputText value="#{rutaBean.ruta.idRuta}" />
-                                <p:commandButton actionListener="#{rutaBean.buscar()}" value="Buscar"   />
-                            </p:panelGrid>
-                        
-                        
-                        <h:form id="formMostrar">
-                            <p:dataTable var="rut" value="#{rutaBean.listaActualizada()}"
-                         emptyMessage="No hay rutas"
-paginator="true" rows="10" paginatorPosition="top"
-paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
-{PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-rowsPerPageTemplate="10"
-                         >
-                <p:column headerText="ID ruta">
-                    <h:outputText value="#{rut.idRuta}"/>
-                </p:column>
-                <p:column headerText="sucursal origen">
-                    <h:outputText value="#{rut.sucursalesByOrigen.idSucursal}"/>
-                </p:column>
-                <p:column headerText="sucursal destino">
-                    <h:outputText value="#{rut.sucursalesByDestino.idSucursal}"/>
-                </p:column>
-                <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  >
-                        <f:setPropertyActionListener target="#{rutaBean.ruta}" value="#{rut}" />
-                    </p:commandButton>
-                   
-                </p:column>
-                             
-            </p:dataTable>
-            
-        </h:form>
-        
-        <p:dialog id="dlg" header="Modificar ruta" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
-            <h:form id="formModificar">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Ruta origen"/>
-                    <p:inputText value="#{rutaBean.ruta.sucursalesByOrigen.idSucursal}" />
-                    <p:outputLabel value="Ruta destino"/>
-                    <p:inputText value="#{rutaBean.ruta.sucursalesByDestino.idSucursal}" />
-                    <p:outputLabel value="descripcion"/>
-                    <p:inputText value="#{rutaBean.ruta.descripcion}" />
-                </p:panelGrid>
-                <p:commandButton actionListener="#{rutaBean.modificar()}" value="Modificar ruta"  
-                                 onclick="PF('dlgmodificar').hide();"/>
-            </h:form>
-        </p:dialog>
-        
+                       
          
                     </h:form> 
                 </p:layoutUnit>
