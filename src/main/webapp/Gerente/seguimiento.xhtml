@@ -90,7 +90,7 @@
                         <p:panelGrid columns="2"  >
                             <p:outputLabel value="dominio de camion"/>
                             <p:inputText value="#{camionBean.camion.dominio}" />
-                            <p:commandButton actionListener="#{camionBean.buscar()}" value="Buscar"   />
+                            <p:commandButton actionListener="#{camionBean.busqueda()}" value="Buscar" update=":formMostrar"   />
                         </p:panelGrid>
                    
                     </h:form>

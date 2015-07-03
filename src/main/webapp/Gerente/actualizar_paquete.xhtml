@@ -102,6 +102,12 @@ rowsPerPageTemplate="10"
                 <p:column headerText="peso paquete">
                     <h:outputText value="#{paq.peso}"/>
                 </p:column>
+                <p:column headerText="ID sucursal origen">
+                    <h:outputText value="#{paq.sucursalesByOrigen.idSucursal}"/>
+                </p:column>
+                <p:column headerText="ID sucursal destino">
+                    <h:outputText value="#{paq.sucursalesByDestino.idSucursal}"/>
+                </p:column>
                 <p:column headerText="Accion">
                     <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  >
                         <f:setPropertyActionListener target="#{paqueteBean.paquete}" value="#{paq}"/>

@@ -5,6 +5,7 @@ import DAO.PaqueteImplements;
 import Persistencia.HibernateUtil;
 import Pojo.Estados;
 import Pojo.Paquetes;
+import Pojo.Sucursales;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,7 +39,24 @@ public class PaqueteBean implements Serializable {
     public void setIdEstado(Integer idEstado) {
         this.idEstado = idEstado;
     }
+    Integer ori;
 
+    public Integer getOri() {
+        return ori;
+    }
+
+    public void setOri(Integer ori) {
+        this.ori = ori;
+    }
+    Integer des;
+
+    public Integer getDes() {
+        return des;
+    }
+
+    public void setDes(Integer des) {
+        this.des = des;
+    }
     
 
     public List<Paquetes> getPaquetesAct() {
@@ -67,7 +85,8 @@ public class PaqueteBean implements Serializable {
     }
     
     public void insertar(){
-        
+        asignarOrigen();
+        asignarDestino();
         linkDAO.insertarPaquete(paquete);
         paquete= new Paquetes();
     }
@@ -135,5 +154,44 @@ public class PaqueteBean implements Serializable {
         if(session != null){
         session.close();}
     }}
-    */ 
+    */
+    public void asignarOrigen(){
+        Sucursales origen=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Sucursales r WHERE r.idSucursal = :idSucursal");
+        query.setParameter("idSucursal", ori);
+        origen = (Sucursales)query.uniqueResult();
+       paquete.setSucursalesByOrigen(origen);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }
+        
+        
+        
+    }
+     public void asignarDestino(){
+         Sucursales destino=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Sucursales r WHERE r.idSucursal = :idSucursal");
+        query.setParameter("idSucursal", des);
+       destino = (Sucursales)query.uniqueResult();
+       paquete.setSucursalesByDestino(destino);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }}
+    
 }
