@@ -101,7 +101,7 @@ public class CamionBean implements Serializable {
     
     public void buscar(){
         System.out.println("dominio: ");
-        System.out.println(linkDAO.getCamion(getCamion().getDominio().toString()));
+        System.out.println(linkDAO.getCamion(getCamion().getDominio()));
         List<Viajes> lista = new ArrayList<Viajes>();
         if (linkDAO.getCamion(getCamion().getDominio()) != null ) {
         camion=linkDAO.getCamion(getCamion().getDominio());
