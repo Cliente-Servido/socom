@@ -30,6 +30,7 @@ public class SesionClienteBean implements Serializable {
     private boolean estalogeado=false;
     
     
+    
     public boolean isEstalogeado() {
         return estalogeado;
     }
@@ -77,8 +78,8 @@ public class SesionClienteBean implements Serializable {
         Session session= null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			String hql = "FROM Usuarios WHERE usuario = '" + this.getUsuario()
-					+ "' and pass = '" + this.getContrasenia()+ "'";
+			String hql = "select u from Usuarios u, Clientes c where (u.clientes.idCliente=c.idCliente) and (u.usuario= '" + this.getUsuario()
+					+ "' and u.pass = '" + this.getContrasenia()+ "'";
 			Query query = session.createQuery(hql);
 
 			if (!query.list().isEmpty()) {
@@ -114,4 +115,5 @@ public class SesionClienteBean implements Serializable {
         else return true;
     }
 
+        
 }

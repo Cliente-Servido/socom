@@ -13,21 +13,123 @@
             <ui:define name="content">
                 <h:form>
                     <p:wizard>
-                        <p:tab id="sucursal" title="Seleccionar Servicio">
+                        <p:tab id="sucursal" title="Servicio">
+                            <p:panel header="Seleccionar Servicio">
                             <h:panelGrid columns="2">
                                 
                                 <p:selectOneMenu  value="#{contratarServicioBean.servicioSelect}">
-                                    <f:selectItem itemLabel="Servicio"/>
+                                    <f:selectItem itemLabel="Seleccione tipo de servicio"/>
                                     <f:selectItems  value="#{contratarServicioBean.listaServicios}"/>
+                                    <p:ajax listener="#{contratarServicioBean.cambioServicio()}" update="descripcion"/>
                                 </p:selectOneMenu>
+                                <br/>
+                                <p:panel>
+                                    <h:outputLabel id="descripcion" value="#{contratarServicioBean.servi.descripcion}"/>
+                                </p:panel>
                                 
+                                <p:separator />
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Ingrese el peso del paquete"/>
+                                    <h:inputText value="#{contratarServicioBean.peso}"/>
+                                </h:panelGrid>
+
                             </h:panelGrid>
+                            </p:panel>
                         </p:tab>
-                        <p:tab>
-                            fsfdfsdfsdfd
+                        <p:tab id="origen" title="Origen">
+                            <p:panel header="Seleccione Sucursal de origen">
+                                
+                            <p:growl id="msgs" showDetail="true" />
+ 
+                    
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <p:outputLabel for="provincia" value="Provincia: " />
+                                    <p:selectOneMenu id="provincia" value="#{consultarSucursales.provinciaSeleccionada}"  style="width:150px">
+                                        <p:ajax listener="#{consultarSucursales.cambioProvincia()}" update="localidad"/>
+                                        <f:selectItem itemLabel="Seleccione provincia" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{consultarSucursales.mapaProvincia}" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="localidad" value="Localidad: " />
+                                    <p:selectOneMenu id="localidad" value="#{consultarSucursales.localidadSeleccionada}"  style="width:150px">
+                                        <p:ajax listener="#{consultarSucursales.listarSucursales()}" update="sucursales"/>
+                                        <f:selectItem itemLabel="Seleccione localidad" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{consultarSucursales.mapaLocalidades}" />
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+ 
+                                <p:separator />
+                                
+                                <h:panelGrid id="sucursales" columns="2" style="margin-bottom:10px" cellpadding="5">
+                                    <p:outputLabel for="city" value="Sucursal:" />
+                                    <p:selectOneRadio id="city" value="#{contratarServicioBean.sucuSelect}"  layout="grid" columns="3">
+                                        <f:selectItems value="#{consultarSucursales.listaSucu}" var="c" itemLabel="#{c.direccion}" itemValue="#{c.idSucursal}"/>
+                                    </p:selectOneRadio>
+                                </h:panelGrid>                   
+                            </p:panel>
+                        
+                        
                         </p:tab>
-                        <p:tab>
-                            fsfdfsdfsdfd
+                        <p:tab id="destino" title="Destino">
+                            <p:panel header="Ingrese los datos del destinatario">
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <p:outputLabel for="provinciadestino" value="Provincia: " />
+                                    <p:selectOneMenu id="provinciadestino" value="#{consultarSucursaless.provinciaSeleccionada}"  style="width:150px">
+                                        <p:ajax listener="#{consultarSucursaless.cambioProvincia()}" update="localidaddestino"/>
+                                        <f:selectItem itemLabel="Seleccione provincia" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{consultarSucursaless.mapaProvincia}" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="localidaddestino" value="Localidad: " />
+                                    <p:selectOneMenu id="localidaddestino" value="#{consultarSucursaless.localidadSeleccionada}"  style="width:150px">
+                                        <p:ajax listener="#{consultarSucursaless.listarSucursales()}" update="sucursalesdestino"/>
+                                        <f:selectItem itemLabel="Seleccione localidad" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{consultarSucursaless.mapaLocalidades}" />
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+ 
+                                <p:separator />
+                                
+                                <h:panelGrid id="sucursalesdestino" columns="1" style="margin-bottom:10px" cellpadding="5">
+                                    <p:outputLabel for="city" value="Sucursal:" />
+                                    <p:selectOneRadio id="citydestino" value="#{contratarServicioBean.sucuDestinoSelec}"  layout="grid" columns="3">
+                                        <f:selectItems value="#{consultarSucursaless.listaSucu}" var="cd" itemLabel="#{cd.direccion}" itemValue="#{cd.idSucursal}"/>
+                                        <p:ajax listener="#{contratarServicioBean.calcularCosto()}"/>
+                                    </p:selectOneRadio>
+                                </h:panelGrid>  
+                            </p:panel>
+                            
+                            <p:separator />
+                            
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Nombre del destinatario"/>
+                                <h:inputText value="#{contratarServicioBean.nombreDesti}"/>
+                            </h:panelGrid>                            
+                        </p:tab>
+                        
+                        <p:tab id="confirmacion" title="Confirmar">
+                            <p:panel header="Confirme los datos ingresados">
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Sucursal de Origen"/>
+                                    <h:outputLabel value="#{contratarServicioBean.sucuSelect}"/>
+                                    
+                                    <h:outputLabel value="Sucursal de Destino"/>
+                                    <h:outputLabel value="#{contratarServicioBean.sucuDestinoSelec}"/>
+                                    
+                                    <h:outputLabel value="Servicio"/>
+                                    <h:outputLabel value="#{contratarServicioBean.servicioSelect}"/>
+                                    
+                                    <h:outputLabel value="Costo"/>
+                                    <h:outputLabel value="#{contratarServicioBean.costo}"/>
+                                    
+                                    <h:outputLabel value="Destinatario"/>
+                                    <h:outputLabel value="#{contratarServicioBean.nombreDesti}"/>
+                                    
+                                </h:panelGrid>
+                                
+                                <h:commandButton value="Confirmar" action="#{contratarServicioBean.grabarPaquete()}"/>
+                            </p:panel>
+                            
                         </p:tab>
                     </p:wizard>
                 </h:form>

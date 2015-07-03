@@ -58,6 +58,26 @@ public class ServicioImplements implements ServicioDao{
         session.close();}
     }return servicio;
     
+    }
+    
+        public Servicios getServicio(String idServicio){
+    
+        Servicios servicio = null;
+    Session session= null;
+    
+    try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Servicios s WHERE s.idServicio ="+ idServicio);        
+        servicio = (Servicios)query.uniqueResult();
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }return servicio;
+    
      }
     
     
