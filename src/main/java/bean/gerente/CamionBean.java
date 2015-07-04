@@ -24,8 +24,16 @@ import org.hibernate.Session;
 @ManagedBean
 @RequestScoped
 public class CamionBean implements Serializable {
+    Integer idRuta;
 
-   Camiones camion;
+    public Integer getIdRuta() {
+        return idRuta;
+    }
+
+    public void setIdRuta(Integer idRuta) {
+        this.idRuta = idRuta;
+    }
+    Camiones camion;
     List<Camiones> camiones;
     List<Viajes> viajes= null;
     List<Camiones> camionesAct;
@@ -60,7 +68,7 @@ public class CamionBean implements Serializable {
     }
     
     public void insertar(){
-        
+        asignarRuta();
         linkDAO.insertarCamion(camion);
         camion= new Camiones();
     }
@@ -83,7 +91,6 @@ public class CamionBean implements Serializable {
 
     public List<Camiones> getCamiones() {
         camiones=linkDAO.mostrarCamiones();
-        System.out.println("Camiones: " + camiones.size());
         return camiones;
     }
     
@@ -94,7 +101,7 @@ public class CamionBean implements Serializable {
     
     public void buscar(){
         System.out.println("dominio: ");
-        System.out.println(linkDAO.getCamion(getCamion().getDominio().toString()));
+        System.out.println(linkDAO.getCamion(getCamion().getDominio()));
         List<Viajes> lista = new ArrayList<Viajes>();
         if (linkDAO.getCamion(getCamion().getDominio()) != null ) {
         camion=linkDAO.getCamion(getCamion().getDominio());
@@ -135,4 +142,22 @@ public class CamionBean implements Serializable {
           return getCamionesAct();
       }
       }  
+      
+    public void asignarRuta(){
+        Rutas ruta1=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Rutas r WHERE r.idRuta = :idRuta");
+        query.setParameter("idRuta", idRuta);
+        ruta1 = (Rutas)query.uniqueResult();
+       camion.setRutas(ruta1);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }}
 }

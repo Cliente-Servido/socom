@@ -44,7 +44,7 @@ public class SucursalesPorRutaImplements implements SucursalesPorRutaDao{
         try{
             session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(sxr);
+            session.merge(sxr);
             session.getTransaction().commit();
     }catch(HibernateException e){
         System.out.println(e.getMessage());

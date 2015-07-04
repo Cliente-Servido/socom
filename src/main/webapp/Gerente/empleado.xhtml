@@ -59,6 +59,7 @@
                         </p:submenu>
                        <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -156,7 +157,7 @@ rowsPerPageTemplate="10"
 
                 <h:form>
                         <p:panelGrid columns="2"  >
-                                    <p:outputLabel value="Legajo"/>
+                                    <p:outputLabel value="Buscar por legajo: "/>
                                     <p:inputText value="#{empleadoBean.empleado.legajo}" />
                                     <p:commandButton actionListener="#{empleadoBean.buscar()}" value="Buscar" update=":formMostrar"  />
                         </p:panelGrid>

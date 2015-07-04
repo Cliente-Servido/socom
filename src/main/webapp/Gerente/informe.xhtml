@@ -59,6 +59,7 @@
                         </p:submenu>
                        <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -85,7 +86,14 @@
                 <p:layoutUnit position="center" >
                     <h2>INFORME</h2>
                     <h4>Informe de facturacion por servicio</h4>
-                    
+                    <h4>Buscar informe por servicio</h4>
+                    <h:form>
+                        <p:panelGrid columns="2"  >
+                                    <p:outputLabel value="Servicio: "/>
+                                    <p:inputText />
+                                    <p:commandButton  value="Buscar"   />
+                        </p:panelGrid>
+                    </h:form>
                     <h4>Facturas</h4>
                     <h:form id="formMostrar">
       <p:dataTable var="fac" value="#{facturaBean.facturas}"
@@ -96,9 +104,11 @@ paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 rowsPerPageTemplate="10"
                          >
                 <p:column headerText="Cliente">
-                    
+                    <h:outputText value="#{fac.clientes.idCliente}"/>
                 </p:column>
-               
+                <p:column headerText="ID Empleado">
+                    <h:outputText value="#{fac.empleados.idEmpleado}"/>
+                </p:column>
                 <p:column headerText="Fecha">
                     <h:outputText value="#{fac.fecha}"/>
                 </p:column>

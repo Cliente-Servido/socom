@@ -59,6 +59,7 @@
                         </p:submenu>
                         <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -82,8 +83,92 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h:form>
-                        <h3>Gestion Recorrido</h3>
-                        
+                        <h2 align="center">Gestion Recorrido</h2>
+                        <h4> Formulario para cargar ruta</h4>
+                        <h:form id="formInsertarSucuViaje">
+                        <p:panelGrid columns="2"  >
+                   
+                            <p:outputLabel value="Definir ID sucursal origen"/>
+                            <p:inputText value="#{sucXruta.orig}"/>
+                            
+                            <p:outputLabel value="Definir ID sucursal destino"/>
+                            <p:inputText value="#{sucXruta.des}"/>
+                            
+                            <p:outputLabel value="ID ruta"/>
+                            <p:inputText value="#{sucXruta.idRuta}" />
+                                                    
+                        </p:panelGrid>
+                            <h:commandButton value="Ingresar ruta" action="#{sucXruta.insertar()}"  />
+                                                
+                    </h:form>
+                             
+                    
+  <h:form id="formMostrar">
+      <h4 align="center">SUCURSALES POR RUTAS</h4>
+      <p:dataTable var="sxr" value="#{sucXruta.sucursalesxruta}"
+                         emptyMessage="No hay empleados disponibless"
+paginator="true" rows="10" paginatorPosition="top"
+paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+{PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+rowsPerPageTemplate="10"
+                         >
+                <p:column headerText="ID Suc x ruta">
+                    <h:outputText value="#{sxr.idSucursalesxRuta}"/>
+                </p:column>
+                <p:column headerText="id origen">
+                    <h:outputText value="#{sxr.sucursalesByOrigen.idSucursal}"/>
+                </p:column>
+                <p:column headerText="id destino">
+                    <h:outputText value="#{sxr.sucursalesByDestino.idSucursal}"/>
+                </p:column>
+                <p:column headerText="Accion">
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"   >
+                        <f:setPropertyActionListener target="#{sucXruta.sucXRuta}" value="#{sxr}"/>
+                    </p:commandButton>
+                   
+                </p:column>
+                
+                <p:column headerText="Accion">
+                    <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();" >
+                        <f:setPropertyActionListener target="#{sucXruta.sucXRuta}" value="#{sxr}" />
+                    </p:commandButton>
+                   
+                </p:column>
+                
+            </p:dataTable>
+            
+        </h:form>
+        
+        <p:dialog id="dlg" header="Modificar Empleado" showEffect="explode" hideEffect="bounce"
+                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
+            <h:form id="formModificar">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="id origen"/>
+                    <p:inputText value="#{sxr.sucursalesByOrigen.idSucursal}" />
+                
+                <p:outputLabel value="id destino"/>
+                <p:inputText value="#{sxr.sucursalesByDestino.idSucursal}" />
+                </p:panelGrid>
+                <p:commandButton actionListener="#{sucXruta.modificar()}" value="Modificar suc x ruta"  
+                                 onclick="PF('dlgmodificar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
+         <p:dialog id="dlg2" header="Eliminar suc x ruta" showEffect="explode" hideEffect="bounce" 
+                    widgetVar="dlgeliminar"  resizable="false" minWidth="200">
+            <h:form id="formEliminar">
+               
+                <p:outputLabel value="¿Desea eliminar al suc x ruta?" />
+                
+                <p:commandButton actionListener="#{sucXruta.eliminar()}" value="Si"  
+                                 onclick="PF('dlgeliminar').hide();"/>
+                <p:commandButton  value="No" 
+                                 onclick="PF('dlg2').hide();"/>
+            </h:form>
+        </p:dialog>
+
+            
+                       
          
                     </h:form> 
                 </p:layoutUnit>

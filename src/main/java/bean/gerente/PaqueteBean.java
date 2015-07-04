@@ -2,8 +2,10 @@ package bean.gerente;
 
 import DAO.PaqueteDao;
 import DAO.PaqueteImplements;
+import Persistencia.HibernateUtil;
 import Pojo.Estados;
 import Pojo.Paquetes;
+import Pojo.Sucursales;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +13,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 
 /**
@@ -21,10 +26,38 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class PaqueteBean implements Serializable {
 
-   Paquetes paquete;
+    Paquetes paquete;
     List<Paquetes> paquetes;
     List<Paquetes> paquetesAct;
     Estados estado;
+    Integer idEstado;
+
+    public Integer getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
+    }
+    Integer ori;
+
+    public Integer getOri() {
+        return ori;
+    }
+
+    public void setOri(Integer ori) {
+        this.ori = ori;
+    }
+    Integer des;
+
+    public Integer getDes() {
+        return des;
+    }
+
+    public void setDes(Integer des) {
+        this.des = des;
+    }
+    
 
     public List<Paquetes> getPaquetesAct() {
         return paquetesAct;
@@ -52,7 +85,8 @@ public class PaqueteBean implements Serializable {
     }
     
     public void insertar(){
-        
+        asignarOrigen();
+        asignarDestino();
         linkDAO.insertarPaquete(paquete);
         paquete= new Paquetes();
     }
@@ -100,6 +134,64 @@ public class PaqueteBean implements Serializable {
           return getPaquetesAct();
       }
       }
-      
+       /**
+ *
+ * 
+     public void asignarEstado(){
+        Estados estado1=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Estados e WHERE e.idEstado = :idEstado");
+        query.setParameter("idEstado", idEstado);
+        estado1 = (Estados)query.uniqueResult();
+        paquete.setEstadoses(estado1);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }}
+    */
+    public void asignarOrigen(){
+        Sucursales origen=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Sucursales r WHERE r.idSucursal = :idSucursal");
+        query.setParameter("idSucursal", ori);
+        origen = (Sucursales)query.uniqueResult();
+       paquete.setSucursalesByOrigen(origen);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }
+        
+        
+        
+    }
+     public void asignarDestino(){
+         Sucursales destino=null;
+        Session session=null;
+        try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Sucursales r WHERE r.idSucursal = :idSucursal");
+        query.setParameter("idSucursal", des);
+       destino = (Sucursales)query.uniqueResult();
+       paquete.setSucursalesByDestino(destino);
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }}
     
 }

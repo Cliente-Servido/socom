@@ -59,6 +59,7 @@
                         </p:submenu>
                         <p:submenu label="Rutas" >
                             <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
+                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
                             <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
                         </p:submenu>
                     </p:panelMenu>
@@ -100,6 +101,12 @@ rowsPerPageTemplate="10"
                 </p:column>
                 <p:column headerText="peso paquete">
                     <h:outputText value="#{paq.peso}"/>
+                </p:column>
+                <p:column headerText="ID sucursal origen">
+                    <h:outputText value="#{paq.sucursalesByOrigen.idSucursal}"/>
+                </p:column>
+                <p:column headerText="ID sucursal destino">
+                    <h:outputText value="#{paq.sucursalesByDestino.idSucursal}"/>
                 </p:column>
                 <p:column headerText="Accion">
                     <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  >

@@ -8,7 +8,7 @@ package Pojo;
  */
 public class Sucursalesxruta  implements java.io.Serializable {
 
-
+    
      private Integer idSucursalesxRuta;
      private Rutas rutas;
      private Sucursales sucursalesByDestino;
