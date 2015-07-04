@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import otros.ResultadoConsultaSeguimiento;
 
 
 /**
@@ -25,7 +26,7 @@ import javax.faces.bean.ManagedBean;
 public class SeguimientoBean {
     private int nroEnvio;
     private EstadosImplements link;
-    private List<Estados> estados;
+    private List<ResultadoConsultaSeguimiento> estados;
     
     /**
      * Creates a new instance of SeguimientoBean
@@ -46,8 +47,8 @@ public class SeguimientoBean {
         this.nroEnvio = nroEnvio;
     }
     
-    public List<Estados> getEstados(){
-        estados=link.mostrarEstadosPaquete(nroEnvio);
+    public List<ResultadoConsultaSeguimiento> getEstados(){
+        estados=link.mostrarEstadosPaqueteLocalidad(nroEnvio);
         return estados;
             
     }

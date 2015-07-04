@@ -12,6 +12,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import otros.ResultadoConsultaSeguimiento;
 
 /**
  *
@@ -26,7 +27,7 @@ public class EstadosImplements implements EstadosDao{
     try{
         
         session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from Estados where paquetes.idPaquete=" + id);
+        Query query=session.createQuery("select e.fecha from Estados e,Sucursales s,Localidades l where paquetes.idPaquete=" + id);
         lista=(List<Estados>)query.list();
         
     }catch(HibernateException e){
@@ -39,4 +40,25 @@ public class EstadosImplements implements EstadosDao{
     return lista;     
     }
     
+
+
+
+public List<ResultadoConsultaSeguimiento> mostrarEstadosPaqueteLocalidad(int id) {
+       Session session= null;
+    List<ResultadoConsultaSeguimiento> lista=null;
+    try{
+        
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("select new otros.ResultadoConsultaSeguimiento(e.fecha,e.descripcion,loc.nombre) from Estados e, Sucursales suc, Localidades loc where e.sucursales.idSucursal=suc.idSucursal and suc.localidades.idLocalidad=loc.idLocalidad and e.paquetes.idPaquete=" + id);
+        lista=(List<ResultadoConsultaSeguimiento>)query.list();
+        
+    }catch(HibernateException e){
+    System.out.println("Error catch");    
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }
+    return lista;     
+    }
 }
