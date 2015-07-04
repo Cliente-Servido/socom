@@ -14,7 +14,7 @@
             
                 <h:form>                                
                     <p:tabView>
-                        <p:tab title="Tracking">
+                        <p:tab title="Seguimiento">
                             <h:panelGrid cellpadding="10">
                                 
                                 <h:outputText value="#{seguimientoBean.nroEnvio}" />
@@ -27,7 +27,7 @@
                                         <h:outputLabel value="#{est.descripcion}"/>
                                     </p:column>
                                     
-                                    <p:column headerText="LOCALICADEstado">
+                                    <p:column headerText="Localidades">
                                         <h:outputLabel value="#{est.localidad}"/>
                                     </p:column>
 
@@ -36,13 +36,13 @@
                         </p:tab>
                         <p:tab title="Origen">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                                
                                 <h:outputText value="Francis Ford Coppola's legendary..." />
                                 </h:panelGrid>
                         </p:tab>
                         <p:tab title="Destino">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                                
                                 <h:outputText value="After a break of more than 15 years..." />
                             </h:panelGrid>
                         </p:tab>
