@@ -6,12 +6,15 @@ import Persistencia.HibernateUtil;
 import Pojo.Camiones;
 import Pojo.Rutas;
 import Pojo.Viajes;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.xml.ws.WebServiceRef;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,8 +25,10 @@ import org.hibernate.Session;
  * @author Wolverine20
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CamionBean implements Serializable {
+    /**@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/EmpresaGps/ProveedorCoordenadas.wsdl")
+    private ProveedorCoordenadas_Service service; */
     Integer idRuta;
 
     public Integer getIdRuta() {
@@ -73,6 +78,7 @@ public class CamionBean implements Serializable {
         camion= new Camiones();
     }
     public void modificar(){
+        asignarRuta();
         linkDAO.modificarCamion(camion);
         camion= new Camiones();
     }
@@ -160,4 +166,19 @@ public class CamionBean implements Serializable {
         if(session != null){
         session.close();}
     }}
+    /**
+    public void consultarUbicacion(){
+        
+        try { // Call Web Service Operation
+            gps.ProveedorCoordenadas port = service.getProveedorCoordenadasPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String dominio = "";
+            // TODO process result here
+            java.util.List<java.lang.Float> result = port.consultarUbicacion(dominio);
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }       
+    }
+    */
 }

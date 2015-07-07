@@ -71,7 +71,7 @@
                 <p:layoutUnit position="east" size="200" resizable="true" header="Ingresar" collapsible="true">
                      <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
                             <h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{sesionGerenteBean.estalogeado eq false}" />
-                            <h:form rendered="#{sesionGerenteBean.estalogeado}">	
+                            <h:form rendered="#{sesionGerenteBean.estalogeado}">    
                                 <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
                                 <h5>Bienvenido Usuario:</h5>
                                 <h:outputLabel value="#{sesionGerenteBean.usuario}" />
@@ -109,7 +109,7 @@
                             <p:inputText value="#{camionBean.camion.descripcion}"/>
                             
                         </p:panelGrid>
-                                <h:commandButton value="Ingresar ruta" action="#{camionBean.insertar()}" />
+                                <h:commandButton value="Ingresar camion" action="#{camionBean.insertar()}" />
                                               
                     </h:form>
                     <h:form>
@@ -172,9 +172,9 @@ rowsPerPageTemplate="10"
                     widgetVar="dlgmodificar" resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Rutas"/>
-                    <p:inputText value="#{camionBean.camion.rutas}" />
-                
+                    <p:outputLabel value="marca"/>
+                    <p:inputText value="#{camionBean.camion.marca}" />
+               
                 </p:panelGrid>
                 <p:commandButton actionListener="#{camionBean.modificar()}" value="Modificar camion"   update=":formMostrar"
                                  onclick="PF('dlgmodificar').hide();"/>

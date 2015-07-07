@@ -71,7 +71,7 @@
                 <p:layoutUnit position="east" size="200" resizable="true" header="Ingresar" collapsible="true">
                     <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
                             <h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{sesionGerenteBean.estalogeado eq false}" />
-                            <h:form rendered="#{sesionGerenteBean.estalogeado}">	
+                            <h:form rendered="#{sesionGerenteBean.estalogeado}">    
                                 <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
                                 <h5>Bienvenido Usuario:</h5>
                                 <h:outputLabel value="#{sesionGerenteBean.usuario}" />
@@ -84,9 +84,14 @@
                 
                 <p:layoutUnit position="center" >
                     <h3 align="CENTER">RUTAS</h3>
-                    
-                    
-                                      
+                       
+            <h:form>
+                        <p:panelGrid columns="2"  >
+                                    <p:outputLabel value="Ruta"/>
+                                    <p:inputText value="#{rutaBean.ruta.idRuta}" />
+                                    <p:commandButton actionListener="#{rutaBean.buscar()}" value="Buscar" update=":formMostrar"  />
+                        </p:panelGrid>
+            </h:form>                             
                     
                     
   <h:form id="formMostrar">
@@ -125,24 +130,24 @@ rowsPerPageTemplate="10"
             
         </h:form>
         
-        <p:dialog id="dlg" header="Modificar Empleado" showEffect="explode" hideEffect="bounce"
+        <p:dialog id="dlg" header="Modificar ruta" showEffect="explode" hideEffect="bounce"
                     widgetVar="dlgmodificar"  resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="ID sucursal de origen"/>
-                    <p:inputText value="#{rut.sucursalesByOrigen.idSucursal}" />
+                    <p:inputText value="#{rutaBean.ori}" />
                 
                 <p:outputLabel value="ID sucursal de destino"/>
-                <p:inputText value="#{rut.sucursalesByDestino.idSucursal}" />
+                <p:inputText value="#{rutaBean.des}" />
                  <p:outputLabel value="Descripcion"/>
                  <p:inputText value="#{rut.descripcion}" />
                 </p:panelGrid>
-                <p:commandButton actionListener="#{rutaBean.modificar()}" value="Modificar empleado"  update=":formMostrar" 
+                <p:commandButton actionListener="#{rutaBean.modificar()}" value="Modificar ruta"  update=":formMostrar" 
                                  onclick="PF('dlgmodificar').hide();"/>
             </h:form>
         </p:dialog>
         
-         <p:dialog id="dlg2" header="Eliminar Empleado" showEffect="explode" hideEffect="bounce" 
+         <p:dialog id="dlg2" header="Eliminar ruta" showEffect="explode" hideEffect="bounce" 
                     widgetVar="dlgeliminar"  resizable="false" minWidth="200">
             <h:form id="formEliminar">
                
@@ -155,23 +160,10 @@ rowsPerPageTemplate="10"
             </h:form>
         </p:dialog>
 
-                <h:form>
-                        <p:panelGrid columns="2"  >
-                                    <p:outputLabel value="Legajo"/>
-                                    <p:inputText value="#{rutaBean.ruta.idRuta}" />
-                                    <p:commandButton actionListener="#{rutaBean.buscar()}" value="Buscar" update=":formMostrar"  />
-                        </p:panelGrid>
-                </h:form>
+                
             
                 </p:layoutUnit>
             </p:layout>
         </h:body>
     </f:view>
 </html>
-
-
-
-
-
-
-
