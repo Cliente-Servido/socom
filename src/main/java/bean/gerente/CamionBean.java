@@ -6,6 +6,7 @@ import Persistencia.HibernateUtil;
 import Pojo.Camiones;
 import Pojo.Rutas;
 import Pojo.Viajes;
+import gps.ProveedorCoordenadas_Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,8 +28,9 @@ import org.hibernate.Session;
 @ManagedBean
 @ViewScoped
 public class CamionBean implements Serializable {
-    /**@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/EmpresaGps/ProveedorCoordenadas.wsdl")
-    private ProveedorCoordenadas_Service service; */
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/EmpresaGps/ProveedorCoordenadas.wsdl")
+    private ProveedorCoordenadas_Service service;
+ 
     Integer idRuta;
 
     public Integer getIdRuta() {
@@ -166,7 +168,7 @@ public class CamionBean implements Serializable {
         if(session != null){
         session.close();}
     }}
-    /**
+   
     public void consultarUbicacion(){
         
         try { // Call Web Service Operation
@@ -178,7 +180,9 @@ public class CamionBean implements Serializable {
             System.out.println("Result = "+result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-        }       
+        }
+
+       
     }
-    */
+    
 }
