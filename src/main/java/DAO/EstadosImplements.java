@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -61,4 +62,43 @@ public List<ResultadoConsultaSeguimiento> mostrarEstadosPaqueteLocalidad(int id)
     }
     return lista;     
     }
+    @Override
+    public List<Estados> buscarEstados(int idPaquete) {
+    Session session = null;
+    List<Estados> listaEstados = null;
+     try{
+        
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Estados where idPaquete=" + idPaquete);
+        
+        listaEstados=(List<Estados>)query.list();
+        
+    }catch(HibernateException e){
+    System.out.println("Error catch");    
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }
+     return listaEstados;
 }
+    @Override
+        public void insertar(Estados estado){
+          Session session=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(estado);
+
+            session.getTransaction().commit();
+    }catch(HibernateException e){
+        System.out.println(e.getMessage());
+        session.getTransaction().rollback();
+    }finally{
+        if(session!=null){
+            session.close();
+        }
+        }
+    }  
+        }
+

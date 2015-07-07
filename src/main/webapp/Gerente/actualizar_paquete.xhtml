@@ -83,13 +83,24 @@
                         <h3>Actualizar estado de paquete</h3>
                             <p:panelGrid columns="2"  >
                                 <p:outputLabel value="ID de paquete"/>
-                                <p:inputText value="#{paqueteBean.paquete.idPaquete}" />
-                                <p:commandButton actionListener="#{paqueteBean.buscar()}" value="Buscar"   />
+                                <p:inputText value="#{estadosBean.idPaquete}" />
+                                <p:commandButton actionListener="#{estadosBean.buscarEstado()}" value="Buscar" update=":formMostrar"  />
                             </p:panelGrid>
-                        
+                     </h:form>
+                     <h:form>
+                        <h3>Agregar estado</h3>
+                            <p:panelGrid columns="2"  >
+                                <p:outputLabel value="ID de paquete"/>
+                                <p:inputText value="#{estadosBean.idPaquete}" />
+                                <p:outputLabel value="descripcion"/>
+                                <p:inputText value="#{estadosBean.estado.descripcion}" />
+                                
+                                <p:commandButton actionListener="#{estadosBean.insertar()}" value="Insertar estado" update=":formMostrar"  />
+                            </p:panelGrid>
+                     </h:form> 
                         
                         <h:form id="formMostrar">
-                            <p:dataTable var="paq" value="#{paqueteBean.listaActualizada()}"
+                            <p:dataTable var="est" value="#{estadosBean.estados}"
                          emptyMessage="No hay paquetes"
 paginator="true" rows="10" paginatorPosition="top"
 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
@@ -97,45 +108,20 @@ paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 rowsPerPageTemplate="10"
                          >
                 <p:column headerText="ID paquete">
-                    <h:outputText value="#{paq.idPaquete}"/>
+                    <h:outputText value="#{est.idEstado}"/>
                 </p:column>
                 <p:column headerText="peso paquete">
-                    <h:outputText value="#{paq.peso}"/>
+                    <h:outputText value="#{est.descripcion}"/>
                 </p:column>
-                <p:column headerText="ID sucursal origen">
-                    <h:outputText value="#{paq.sucursalesByOrigen.idSucursal}"/>
-                </p:column>
-                <p:column headerText="ID sucursal destino">
-                    <h:outputText value="#{paq.sucursalesByDestino.idSucursal}"/>
-                </p:column>
-                <p:column headerText="Accion">
-                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  >
-                        <f:setPropertyActionListener target="#{paqueteBean.paquete}" value="#{paq}"/>
-                    </p:commandButton>
-                   
-                </p:column>
+                
+                
                              
             </p:dataTable>
             
-        </h:form>
-        
-        <p:dialog id="dlg" header="Modificar paquete" showEffect="explode" hideEffect="bounce"
-                    widgetVar="dlgmodificar"  resizable="false" minWidth="200">
-            <h:form id="formModificar">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Estados"/>
-                    <p:inputText value="#{paqueteBean.paquete.estadoses}" />
-                
-                <p:outputLabel value="Viajes"/>
-                <p:inputText value="#{paqueteBean.paquete.viajeses}" />
-                </p:panelGrid>
-                <p:commandButton actionListener="#{paqueteBean.modificar()}" value="Modificar paquete"  
-                                 onclick="PF('dlgmodificar').hide();"/>
-            </h:form>
-        </p:dialog>
         
          
                     </h:form> 
+                        
                 </p:layoutUnit>
             </p:layout>
         </h:body>
