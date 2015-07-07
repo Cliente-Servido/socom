@@ -2,6 +2,8 @@ package bean.gerente;
 
 import DAO.FacturaDao;
 import DAO.FacturaImplements;
+import DAO.PaqueteDao;
+import DAO.PaqueteImplements;
 import Persistencia.HibernateUtil;
 import Pojo.Clientes;
 import Pojo.Empleados;
@@ -9,6 +11,7 @@ import Pojo.Facturas;
 import Pojo.Paquetes;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +31,26 @@ public class FacturaBean implements Serializable {
     Facturas factura;
     List<Facturas> facturas;
     Integer idCliente;
+    List<Paquetes> paquetes;
+    int idPaquete;
+    PaqueteDao linkDaoP;
+  
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public List<Paquetes> getPaquetes() {
+        return paquetes;
+    }
+
+    public void setPaquetes(List<Paquetes> paquetes) {
+        this.paquetes = paquetes;
+    }
 
     public Integer getIdCliente() {
         return idCliente;
@@ -36,11 +59,8 @@ public class FacturaBean implements Serializable {
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
-    Integer idPaquete;
 
-    public Integer getIdPaquete() {
-        return idPaquete;
-    }
+  
 
     public void setIdPaquetes(Integer idPaquete) {
         this.idPaquete = idPaquete;
@@ -60,8 +80,10 @@ public class FacturaBean implements Serializable {
     
     @PostConstruct
     public void init() {
+              
         factura = new Facturas();
         linkDAO= new FacturaImplements();
+        linkDaoP = new PaqueteImplements();
         
     }
     
@@ -154,6 +176,16 @@ public class FacturaBean implements Serializable {
         if(session != null){
         session.close();}
     }}
+    
+    public void buscarpaquete(){
+        System.out.println(idPaquete);
+       final Paquetes paq= linkDaoP.getPaquete(idPaquete);
+        System.out.println("aca:");
+        System.out.println(paq.getDestinatarioNombre());
+         List<Paquetes> lista = new ArrayList<Paquetes>();
+       lista.add(paq);
+        setPaquetes(lista);
+    }
 }
     
 

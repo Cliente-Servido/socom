@@ -89,7 +89,6 @@ public class EstadosBean implements Serializable{
     }
 
     public void buscarEstado(){
-          System.out.println("Llego hasta aca 1dxhtdrhdt");
         setEstados(linkDao.buscarEstados(idPaquete));
         
     }
