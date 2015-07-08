@@ -12,9 +12,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.xml.ws.WebServiceRef;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -78,6 +80,10 @@ public class CamionBean implements Serializable {
         asignarRuta();
         linkDAO.insertarCamion(camion);
         camion= new Camiones();
+        FacesContext.getCurrentInstance().addMessage(
+            null,
+            new FacesMessage(FacesMessage.SEVERITY_INFO,
+            "El camion fue añadido con exito" , "No se puedo añadir camion"));
     }
     public void modificar(){
         asignarRuta();
@@ -136,6 +142,16 @@ public class CamionBean implements Serializable {
         
      
      public void busqueda(){
+        if (linkDAO.getCamion(getCamion().getDominio()) == null) {
+
+        setCamionesAct(null);
+        /*devuelve el mensaje que el usuario no se encontro */
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "No se encontro patente",
+                            "Por favor ingrese una nueva patente"));
+         }
         if (linkDAO.getCamion(getCamion().getDominio())!= null ) {
         camion=linkDAO.getCamion(getCamion().getDominio());
         List<Camiones> lista = new ArrayList<Camiones>();

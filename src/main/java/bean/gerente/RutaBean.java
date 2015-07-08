@@ -154,7 +154,7 @@ public class RutaBean implements Serializable {
     }
     
     public void buscar(){
-        System.out.println(ruta.getIdRuta());
+
         if (linkDAO.getRuta(getRuta().getIdRuta()) == null) {
         setRutasAct(null);
         /*devuelve el mensaje que el usuario no se encontro */

@@ -11,8 +11,7 @@
         <ui:composition template="./plantillas/plantilla.xhtml">
          <ui:define name="content"> 
                     <div id="altaempleado">  
-                    <h3>INGRESAR EMPLEADO</h3>   
-                    
+                    <h3>INGRESAR EMPLEADO</h3>
                     <h:outputLabel value="Formulario" />
                     <h:form id="formInsertarEmpleado">
                         <p:panelGrid columns="2"  >
@@ -32,8 +31,8 @@
                             <p:outputLabel value="Cargo del Empleado"/>
                             <p:inputText value="#{empleadoBean.empleado.cargo}"  />
                             
-                            <p:outputLabel value="Fecha de alta (dd/mm/aa)"/>
-                            <p:inputText value="#{empleadoBean.fecha}"  /> 
+                            <p:outputLabel value="Fecha de alta (dd/mm/aa)" />
+                            <p:inputText value="#{empleadoBean.fecha}" /> 
              
                         </p:panelGrid>
 

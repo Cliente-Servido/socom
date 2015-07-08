@@ -13,15 +13,14 @@
                     <h3>SERVICIOS</h3>
                     <h:form>
                         <p:panelGrid columns="2"  >
-                                    <p:outputLabel value="ID de paquete"/>
+                                    <p:outputLabel value="Buscar por ID de servicio"/>
                                     <p:inputText value="#{servicioBean.servicio.idServicio}" />
                                     <p:commandButton actionListener="#{servicioBean.buscar()}" value="Buscar" update=":formMostrar"  />
                         </p:panelGrid>
                     </h:form>
                                       
                     
-                    
-  <h:form id="formMostrar">
+ <h:form id="formMostrar">
       <p:dataTable var="serv" value="#{servicioBean.listaActualizada()}"
                          emptyMessage="No hay Servicios disponibless"
 paginator="true" rows="10" paginatorPosition="top"

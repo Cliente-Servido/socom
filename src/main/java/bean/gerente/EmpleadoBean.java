@@ -60,7 +60,7 @@ public class EmpleadoBean implements Serializable {
         
         empleado = new Empleados();
         linkDAO= new EmpleadoImplements();
-
+        
         HttpSession miSesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
         this.empleado.setSucursales(usuario.getGerentes().getSucursales());
@@ -79,7 +79,7 @@ public class EmpleadoBean implements Serializable {
 	} catch (ParseException e) {
 		e.printStackTrace();
 	}
-        
+
         linkDAO.insertarEmpleado(empleado);
         empleado= new Empleados();
         FacesContext.getCurrentInstance().addMessage(
@@ -119,7 +119,7 @@ public class EmpleadoBean implements Serializable {
     
     public void buscar(){
         if (linkDAO.getEmpleado(getEmpleado().getLegajo()) == null) {
-        System.out.println("nulo");
+
         setEmpleadosAct(null);
         /*devuelve el mensaje que el usuario no se encontro */
             FacesContext.getCurrentInstance().addMessage(
@@ -142,5 +142,5 @@ public class EmpleadoBean implements Serializable {
       }else{
           return getEmpleadosAct();
       }
-      }
+      }    
 }

@@ -9,52 +9,19 @@
        <h:body>
 
         <ui:composition template="./plantillas/plantilla.xhtml">
-         <ui:define name="content">
-                    <h3 align="center"> GESTION CAMIONES</h3>
-                     
-                        <h4>Insertar camion</h4>
-                        
-                        <h:form id="formInsertarCamion">
-                        <p:panelGrid columns="2"  >
-                            
-                            <p:outputLabel value="ID ruta"/>
-                            <p:inputText value="#{camionBean.idRuta}"/>
-                            
-                            <p:outputLabel value="Dominio"/>
-                            <p:inputText value="#{camionBean.camion.dominio}"/>
-                            
-                            <p:outputLabel value="Marca"/>
-                            <p:inputText value="#{camionBean.camion.marca}"/>
-                            
-                            <p:outputLabel value="Modelo"/>
-                            <p:inputText value="#{camionBean.camion.modelo}"/>
-                            
-                            <p:outputLabel value="Año"/>
-                            <p:inputText value="#{camionBean.camion.anio}"/>
-                             
-                            <p:outputLabel value="Descripcion"/>
-                            <p:inputText value="#{camionBean.camion.descripcion}"/>
-                            
-                        </p:panelGrid>
-                                <h:commandButton value="Ingresar camion" action="#{camionBean.insertar()}" />
-                                              
-                    </h:form>
-                    <h:form>
-                        <h4>Buscar camion por patente</h4>
+         <ui:define name="content"> 
+                    <h3>CAMIONES</h3>
+                <h:form>
+                    <h4>Buscar camion por patente</h4>
                         <p:panelGrid columns="2"  >
                             <p:outputLabel value="Patente"/>
                             <p:inputText value="#{camionBean.camion.dominio}" />
                             <p:commandButton actionListener="#{camionBean.busqueda()}" value="Buscar"  update=":formMostrar" />
                         </p:panelGrid>
-                   
-                    </h:form>
-                    
-                    
-                                      
-                    
+                </h:form>
+    
                     
   <h:form id="formMostrar">
-      <h4 align="center">Camiones</h4>
       <p:dataTable var="cam" value="#{camionBean.listaActualizada()}"
                          emptyMessage="No hay camiones disponibles"
 paginator="true" rows="10" paginatorPosition="top"
@@ -68,14 +35,8 @@ rowsPerPageTemplate="10"
                 <p:column headerText="Dominio de camion">
                     <h:outputText value="#{cam.dominio}"/>
                 </p:column>
-                <p:column headerText="Marca">
-                    <h:outputText value="#{cam.marca}"/>
-                </p:column>
                 <p:column headerText="Modelo">
                     <h:outputText value="#{cam.modelo}"/>
-                </p:column>
-                <p:column headerText="ID de ruta">
-                    <h:outputText value="#{cam.rutas.idRuta}"/>
                 </p:column>
                 <p:column headerText="Accion">
                     <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificar"  >
@@ -99,9 +60,9 @@ rowsPerPageTemplate="10"
                     widgetVar="dlgmodificar" resizable="false" minWidth="200">
             <h:form id="formModificar">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="marca"/>
-                    <p:inputText value="#{camionBean.camion.marca}" />
-               
+                    <p:outputLabel value="Rutas"/>
+                    <p:inputText value="#{camionBean.camion.rutas}" />
+                
                 </p:panelGrid>
                 <p:commandButton actionListener="#{camionBean.modificar()}" value="Modificar camion"   update=":formMostrar"
                                  onclick="PF('dlgmodificar').hide();"/>
@@ -122,7 +83,7 @@ rowsPerPageTemplate="10"
         </p:dialog>
 
                     
-              </ui:define>
+             </ui:define>
              </ui:composition>
          </h:body>
  
