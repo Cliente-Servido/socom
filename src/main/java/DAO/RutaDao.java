@@ -6,6 +6,7 @@
 package DAO;
 
 import Pojo.Rutas;
+import Pojo.Sucursales;
 import java.util.List;
 
 /**
@@ -18,6 +19,6 @@ public interface RutaDao {
    public void insertarRuta(Rutas ruta);
    public void modificarRuta(Rutas ruta);
    public void eliminarRuta(Rutas ruta);
-       
+   public Rutas getRutaPorSucursales(Sucursales ori,Sucursales des);
 }
 

@@ -7,6 +7,7 @@ package DAO;
 
 import Persistencia.HibernateUtil;
 import Pojo.Rutas;
+import Pojo.Sucursales;
 
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -113,6 +114,27 @@ public class RutaImplements222 implements RutaDao{
             session.close();
         }
         }
+    }
+    @Override
+    public Rutas getRutaPorSucursales(Sucursales ori,Sucursales des){
+        Rutas ruta = null;
+    Session session= null;
+    
+    try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Rutas r WHERE r.origen = "+ori.idSucursal+" AND r.destino= "+des.idSucursal);
+       ruta=(Rutas)query.list().get(0);
+        System.out.println(ruta.getDescripcion());
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }return ruta;
+        
+        
     }
 }
     

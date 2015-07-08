@@ -11,7 +11,7 @@ import java.util.Set;
 public class Sucursales  implements java.io.Serializable {
 
 
-     private Integer idSucursal;
+     public Integer idSucursal;
      private Localidades localidades;
      private String direccion;
      private String horario;

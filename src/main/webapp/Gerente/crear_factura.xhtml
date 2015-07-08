@@ -91,6 +91,29 @@
                                 <p:commandButton actionListener="#{facturaBean.buscarpaquete()}" value="Buscar paquete" update=":formMostrar"  />
                             </p:panelGrid>
                      </h:form> 
+                      <h4>Crear Factura</h4>
+                        
+                        <h:form id="formInsertarFactura">
+                            <p:growl id="mensageGeneral" showDetail="true" sticky="false"/>
+                        <p:panelGrid columns="2"  >
+                            
+                            <p:outputLabel value="Id Cliente"/>
+                            <p:inputText value="#{facturaBean.idCliente}"/>
+                            
+                            <p:outputLabel value="Id Paquete"/>
+                            <p:inputText value="#{facturaBean.idPaquete}"/>
+                            
+                            <p:outputLabel value="Costo"/>
+                            <p:inputText value="#{facturaBean.factura.monto}"/>
+                            
+                           <p:outputLabel value="Fecha"/>
+                           <p:inputText value="#{facturaBean.fecha}"/>
+                            
+                            
+                        </p:panelGrid>
+                            <h:commandButton value="Crear Factura" action="#{facturaBean.insertar()}"   />
+                                              
+                    </h:form>
             
 <h:form id="formMostrar">
     <p:dataTable var="fac" value="#{facturaBean.paquetes}"
@@ -103,6 +126,7 @@ rowsPerPageTemplate="10"
                 <p:column headerText="ID paquete">
                     <h:outputText value="#{fac.idPaquete}"/>
                 </p:column>
+               
                 <p:column headerText="Costo total">
                     <h:outputText value="#{fac.costoTotal}"/>
                 </p:column>

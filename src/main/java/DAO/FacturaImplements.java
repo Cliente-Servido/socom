@@ -8,6 +8,8 @@ package DAO;
 import Persistencia.HibernateUtil;
 import Pojo.Facturas;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -44,9 +46,14 @@ public class FacturaImplements implements FacturaDao{
         try{
             session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(factura);
+            session.merge(factura);
             session.getTransaction().commit();
+             FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "La factura fue creada con exito" , "No se puedo crear la factura"));
     }catch(HibernateException e){
+        
         System.out.println(e.getMessage());
         session.getTransaction().rollback();
     }finally{
