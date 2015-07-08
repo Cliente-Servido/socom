@@ -1,88 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <f:view contentType="text/html">
-        <h:head>
-            <h:outputStylesheet library="estilos" name="estiloAdmin.css"/>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Administrador</title>
-            </f:facet>
-        </h:head>
-        <h:body>
-            <p:layout fullPage="false" id="container">
-                <p:layoutUnit position="north" size="220">
-                    <div id="header">
-                        <div id="logo">
-                            
-                        </div>
-                    </div>
-                </p:layoutUnit>
-                <p:layoutUnit position="south" size="200" id="footer">
-                    <p align="center">SeguroEnvios SRL.</p>
-                    <p align="center">Derechos Reservados</p>
-                    <p align="center">Este sitio está protegido por las leyes internacionales y de Argentina 
-                        de derechos de autor y marca registrada. Todos los derechos reservados. 
-                        © 1998-2015 SeguroEnvios </p>
-                </p:layoutUnit>
-                <p:layoutUnit position="west" size="215" resizable="false" header="Menu" collapsible="true">
-                    <h:form>
-                    <p:growl autoUpdate="true"/>
-                    <p:panelMenu id="menu">
-                        <p:submenu label="incio">
-                            <p:menuitem value="inicio" outcome="indexGerente" />
-                        </p:submenu>
-                        <p:submenu label="Empleados">
-                            <p:menuitem value="Empleados" outcome="empleado" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Alta" outcome="alta_empleados" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Baja" outcome="empleado" actionListener="#{menuView.update}"   />
-                            <p:menuitem value="Modificacion" outcome="empleado" actionListener="#{menuView.update}"   />
-                        </p:submenu>
-                        <p:submenu label="Camiones">
-                            <p:menuitem value="Camiones" outcome="camion" actionListener="#{menuView.save}"  />
-                            <p:menuitem value="Seguimiento" outcome="seguimiento" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Informe" outcome="informe" actionListener="#{menuView.delete}"/>
-                        </p:submenu>
-                         <p:submenu label="Servicios">
-                             <p:menuitem value="Servicios" outcome="servicios" actionListener="#{menuView.save}"  />
-                             <p:menuitem value="Crear Servicio" outcome="nuevoServicio" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Modificar Servicio" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Eliminar Servicio" actionListener="#{menuView.delete}"/>
-                        </p:submenu>
-                       
-                        <p:submenu label="Paquetes" >
-                            <p:menuitem value="Actualizar Estado" outcome="actualizar_paquete" actionListener="#{menuView.delete}"/>
-                            <p:menuitem value="Facturas" outcome="facturas"  actionListener="#{menuView.save}"/>
-                        </p:submenu>
-                        <p:submenu label="Rutas" >
-                            <p:menuitem value="Gestionar rutas" outcome="gestion_rutas" />
-                            <p:menuitem value="Ver rutas" outcome="listar_Rutas" />
-                            <p:menuitem value="Gestionar recorridos" outcome="gestion_recorrido" />
-                        </p:submenu>
-                    </p:panelMenu>
 
-                </h:form>
-                    
-                </p:layoutUnit>
-                
-                <p:layoutUnit position="east" size="200" resizable="true" header="Ingresar" collapsible="true">
-                    <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
-                            <h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{sesionGerenteBean.estalogeado eq false}" />
-                            <h:form rendered="#{sesionGerenteBean.estalogeado}">	
-                                <p:panelGrid columns="1"   style="text-align: center;margin: 0 auto;">
-                                <h5>Bienvenido Usuario:</h5>
-                                <h:outputLabel value="#{sesionGerenteBean.usuario}" />
-                                 <h:commandButton value="Cerrar Sesión"
-                                    action="#{sesionGerenteBean.logout()}" />
-                                 </p:panelGrid>
-                            </h:form>
-                    </p:panelGrid>
-                </p:layoutUnit>
-                
-                <p:layoutUnit position="center" >
+       <h:body>
+
+        <ui:composition template="./plantillas/plantilla.xhtml">
+         <ui:define name="content"> 
                     <h3>SEGUIMIENTO DE CAMION</h3>                    
                    
                     <h:form>
@@ -162,9 +89,8 @@ rowsPerPageTemplate="10"
             </h:form>
         </p:dialog>
         
-         
-                </p:layoutUnit>
-            </p:layout>
-        </h:body>
-    </f:view>
+         </ui:define>
+             </ui:composition>
+         </h:body>
+ 
 </html>
