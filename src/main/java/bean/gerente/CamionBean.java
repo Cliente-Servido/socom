@@ -32,7 +32,15 @@ import org.hibernate.Session;
 public class CamionBean implements Serializable {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/EmpresaGps/ProveedorCoordenadas.wsdl")
     private ProveedorCoordenadas_Service service;
- 
+    int idCamion; 
+
+    public int getIdCamion() {
+        return idCamion;
+    }
+
+    public void setIdCamion(int idCamion) {
+        this.idCamion = idCamion;
+    }
     Integer idRuta;
 
     public Integer getIdRuta() {
@@ -174,6 +182,7 @@ public class CamionBean implements Serializable {
         session=HibernateUtil.getSessionFactory().openSession();
         Query query=session.createQuery("from Rutas r WHERE r.idRuta = :idRuta");
         query.setParameter("idRuta", idRuta);
+        
         ruta1 = (Rutas)query.uniqueResult();
        camion.setRutas(ruta1);
     }catch(HibernateException e){
@@ -201,4 +210,27 @@ public class CamionBean implements Serializable {
        
     }
     
-}
+    public void BusquedaId(){
+        
+        if (linkDAO.getCamionId(idCamion) == null) {
+
+        setCamionesAct(null);
+        /*devuelve el mensaje que el usuario no se encontro */
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "No se encontro Camion",
+                            "Por favor ingrese un nuevo Id"));
+         }
+        if (linkDAO.getCamionId(idCamion) != null ) {
+        camion=linkDAO.getCamionId(idCamion);
+        List<Camiones> lista = new ArrayList<Camiones>();
+        lista.add(camion);
+        setCamionesAct(lista);}
+    }
+    }
+    
+    
+    
+    
+    

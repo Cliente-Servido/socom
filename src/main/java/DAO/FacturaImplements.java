@@ -57,6 +57,7 @@ public class FacturaImplements implements FacturaDao{
         System.out.println(e.getMessage());
         session.getTransaction().rollback();
     }finally{
+            
         if(session!=null){
             session.close();
         }

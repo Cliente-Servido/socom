@@ -6,6 +6,8 @@ import DAO.PaqueteDao;
 import DAO.PaqueteImplements;
 import DAO.RutaDao;
 import DAO.RutaImplements222;
+import DAO.SucursalesDAO;
+import DAO.SucursalesImplementa;
 import Persistencia.HibernateUtil;
 import Pojo.Clientes;
 import Pojo.Empleados;
@@ -15,8 +17,6 @@ import Pojo.Rutas;
 import Pojo.Sucursales;
 import Pojo.Usuarios;
 import Pojo.Viajes;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +48,7 @@ public class FacturaBean implements Serializable {
     PaqueteDao linkDaoP;
     String fecha;
     RutaDao linkDaoR;
+    SucursalesDAO linkDaoS;
     public String getFecha() {
         return fecha;
     }
@@ -97,8 +98,9 @@ public class FacturaBean implements Serializable {
         factura = new Facturas();
         linkDAO= new FacturaImplements();
         linkDaoP = new PaqueteImplements();
-        linkDaoR=new RutaImplements222();
-    }
+       
+
+    }   
     
     public void insertar(){
         /*pasar fecha ingresada a date*/
@@ -120,8 +122,9 @@ public class FacturaBean implements Serializable {
         final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
         this.factura.setEmpleados((Empleados)usuario.getEmpleados());
         asignarCliente();
+      
         linkDAO.insertarFactura(factura);
-        asignarViaje();
+         asignarPaquete();
         factura= new Facturas();
     }
     public void modificar(){
@@ -168,28 +171,17 @@ public class FacturaBean implements Serializable {
         if(session != null){
         session.close();}
     }}
-  /**
- *
- * 
+
  
     public void asignarPaquete(){
-    Paquetes paquete1;
-    Session session = null;
-    try{
-        session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from Paquetes p WHERE p.idPaquete = :idPaquete");
-        query.setParameter("idPaquete", idPaquete);
-        paquete1 = (Paquetes)query.uniqueResult();
-       factura.setPaqueteses(paquete1);
-    }catch(HibernateException e){
-    System.out.println(e.getMessage());
-    session.getTransaction().rollback();
+   facturas= linkDAO.mostrarFacturas();
+    Paquetes paq= linkDaoP.getPaquete(idPaquete);
+    paq.setFacturas(facturas.get((facturas.size())-1));
+    linkDaoP.modificarPaquete(paq);
+        System.out.println("asigne factura a paquete");
     }
-    finally {
-        if(session != null){
-        session.close();}
-    }}
-*/    
+   
+
     public void asignarEmpleado(){
        HttpSession miSesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
@@ -207,46 +199,8 @@ public class FacturaBean implements Serializable {
        lista.add(paq);
         setPaquetes(lista);
     }
-    
-    public void asignarViaje(){
-        Paquetes paq= linkDaoP.getPaquete(idPaquete);
-  Rutas rut;
-        ;
-        /*hay que hacer el implements de esto*/
-        Session session=null;
-       
-        
-        try{
-            
-            
-            session=HibernateUtil.getSessionFactory().openSession();
-                        session.beginTransaction();
-             final Sucursales ori=paq.getSucursalesByOrigen();
-       final Sucursales des=paq.getSucursalesByDestino();
-     
-        rut=linkDaoR.getRutaPorSucursales(ori,des);
-        Viajes viajes=new Viajes();
-        viajes.setSucursalesByOrigen(ori);
-        viajes.setSucursalesByDestino(des);
-        
-
-            session.merge(viajes);
-            session.getTransaction().commit();
-            
-            
-    }catch(HibernateException e){
-        System.out.println(e.getMessage());
-        session.getTransaction().rollback();
-    }finally{
-        if(session!=null){
-            session.close();
-        }
-        
-        
-        }
-        
-        
-    }
 }
+    
+
     
 

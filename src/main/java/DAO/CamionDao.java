@@ -18,5 +18,5 @@ public interface CamionDao {
    public void insertarCamion(Camiones camion);
    public void modificarCamion(Camiones camion);
    public void eliminarCamion(Camiones camion);
-   
+    public Camiones getCamionId(int idCamion);
 }

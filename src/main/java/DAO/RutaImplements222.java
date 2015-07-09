@@ -116,13 +116,13 @@ public class RutaImplements222 implements RutaDao{
         }
     }
     @Override
-    public Rutas getRutaPorSucursales(Sucursales ori,Sucursales des){
+    public Rutas getRutaPorSucursales(int ori,int des){
         Rutas ruta = null;
     Session session= null;
     
     try{
         session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from Rutas r WHERE r.origen = "+ori.idSucursal+" AND r.destino= "+des.idSucursal);
+        Query query=session.createQuery("from Rutas r WHERE r.origen = "+ori+" AND r.destino= "+des);
        ruta=(Rutas)query.list().get(0);
         System.out.println(ruta.getDescripcion());
     }catch(HibernateException e){

@@ -19,6 +19,6 @@ public interface RutaDao {
    public void insertarRuta(Rutas ruta);
    public void modificarRuta(Rutas ruta);
    public void eliminarRuta(Rutas ruta);
-   public Rutas getRutaPorSucursales(Sucursales ori,Sucursales des);
+   public Rutas getRutaPorSucursales(int ori,int des);
 }
 

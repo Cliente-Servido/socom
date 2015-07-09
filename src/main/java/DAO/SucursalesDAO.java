@@ -13,7 +13,7 @@ import java.util.List;
  * @author seba
  */
 public interface SucursalesDAO {
-    
+     public List<Sucursales> mostraSucursales2();
     public List<Sucursales> mostraSucursales();
     
 }
