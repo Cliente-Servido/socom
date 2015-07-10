@@ -7,18 +7,25 @@ package bean.cliente;
 
 import DAO.ClienteImplements;
 import DAO.ServicioImplements;
+import DAO.SucursalesImplementa;
 import Pojo.Clientes;
 import Pojo.Paquetes;
 import Pojo.Servicios;
+import Pojo.Usuarios;
+import bean.session.SesionClienteBean;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,7 +35,7 @@ import javax.faces.bean.ViewScoped;
 @Named(value = "contratarServicioBean")
 @ViewScoped
 
-public class ContratarServicioBean {
+public class ContratarServicioBean implements Serializable{
     private String servicioSelect;
     private Map<String,String> listaServicios;
     private Servicios servi;
@@ -37,12 +44,56 @@ public class ContratarServicioBean {
     private String nombreDesti;
     private float peso;
     private float costo;
-    private Clientes cliente;
+    private String direccion;
+    private int dni;
+    private String telefono;
+    private String email;
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
-    /*
-    private Clientes getCliente(){
-        cliente= new ClienteImplements().getServicio()
-    }*/
+
+    private SesionClienteBean sesion=null;
+
+    public SesionClienteBean getSesion() {
+
+        return sesion;
+ 
+    }
+
+    public void setSesion(SesionClienteBean sesion) {
+        this.sesion = sesion;
+    }
+   
 
     public float getPeso() {
         return peso;
@@ -87,7 +138,11 @@ public class ContratarServicioBean {
     
     @PostConstruct
     public void init(){
-        System.out.println("llego 1");
+        
+        HttpSession miSession=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        sesion=(SesionClienteBean) miSession.getAttribute("sesionClienteBean");
+        
+
         servi=new Servicios();
         listaServicios=new HashMap<String,String>();
         List<Servicios> juan=new ServicioImplements().mostrarServicio();
@@ -135,7 +190,16 @@ public class ContratarServicioBean {
     public void grabarPaquete(){
         
         Paquetes paque=new Paquetes();
-       
+        paque.setCostoTotal(costo);
+        paque.setDestinatarioNombre(this.nombreDesti);
+        paque.setDestinatarioDireccion(direccion);
+        paque.setDestinatarioDni(dni);
+        paque.setDestinatarioEmail(email);
+        paque.setDestinatarioTelefono(telefono);
+        paque.setServicios(servi);
+        paque.setPeso(peso);
+        paque.setSucursalesByDestino(new SucursalesImplementa().buscarSucursal(this.sucuSelect));
+        
         
     }    
     
