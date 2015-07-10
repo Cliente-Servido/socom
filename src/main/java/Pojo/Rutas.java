@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,24 +12,24 @@ public class Rutas  implements java.io.Serializable {
 
 
      private Integer idRuta;
-     private Sucursales sucursalesByDestino;
      private Sucursales sucursalesByOrigen;
+     private Sucursales sucursalesByDestino;
      private String descripcion;
      private Integer cantidadSucursales;
-     private Set<Camiones> camioneses = new HashSet<Camiones>(0);
-     private Set<Sucursalesxruta> sucursalesxrutas = new HashSet<Sucursalesxruta>(0);
+     private Set camioneses = new HashSet(0);
+     private Set sucursalesxrutas = new HashSet(0);
 
     public Rutas() {
     }
 
 	
-    public Rutas(Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen) {
-        this.sucursalesByDestino = sucursalesByDestino;
+    public Rutas(Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino) {
         this.sucursalesByOrigen = sucursalesByOrigen;
+        this.sucursalesByDestino = sucursalesByDestino;
     }
-    public Rutas(Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen, String descripcion, Integer cantidadSucursales, Set<Camiones> camioneses, Set<Sucursalesxruta> sucursalesxrutas) {
-       this.sucursalesByDestino = sucursalesByDestino;
+    public Rutas(Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, String descripcion, Integer cantidadSucursales, Set camioneses, Set sucursalesxrutas) {
        this.sucursalesByOrigen = sucursalesByOrigen;
+       this.sucursalesByDestino = sucursalesByDestino;
        this.descripcion = descripcion;
        this.cantidadSucursales = cantidadSucursales;
        this.camioneses = camioneses;
@@ -43,19 +43,19 @@ public class Rutas  implements java.io.Serializable {
     public void setIdRuta(Integer idRuta) {
         this.idRuta = idRuta;
     }
-    public Sucursales getSucursalesByDestino() {
-        return this.sucursalesByDestino;
-    }
-    
-    public void setSucursalesByDestino(Sucursales sucursalesByDestino) {
-        this.sucursalesByDestino = sucursalesByDestino;
-    }
     public Sucursales getSucursalesByOrigen() {
         return this.sucursalesByOrigen;
     }
     
     public void setSucursalesByOrigen(Sucursales sucursalesByOrigen) {
         this.sucursalesByOrigen = sucursalesByOrigen;
+    }
+    public Sucursales getSucursalesByDestino() {
+        return this.sucursalesByDestino;
+    }
+    
+    public void setSucursalesByDestino(Sucursales sucursalesByDestino) {
+        this.sucursalesByDestino = sucursalesByDestino;
     }
     public String getDescripcion() {
         return this.descripcion;
@@ -71,18 +71,18 @@ public class Rutas  implements java.io.Serializable {
     public void setCantidadSucursales(Integer cantidadSucursales) {
         this.cantidadSucursales = cantidadSucursales;
     }
-    public Set<Camiones> getCamioneses() {
+    public Set getCamioneses() {
         return this.camioneses;
     }
     
-    public void setCamioneses(Set<Camiones> camioneses) {
+    public void setCamioneses(Set camioneses) {
         this.camioneses = camioneses;
     }
-    public Set<Sucursalesxruta> getSucursalesxrutas() {
+    public Set getSucursalesxrutas() {
         return this.sucursalesxrutas;
     }
     
-    public void setSucursalesxrutas(Set<Sucursalesxruta> sucursalesxrutas) {
+    public void setSucursalesxrutas(Set sucursalesxrutas) {
         this.sucursalesxrutas = sucursalesxrutas;
     }
 

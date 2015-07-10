@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,9 +20,9 @@ public class Empleados  implements java.io.Serializable {
      private String cargo;
      private String area;
      private Date fechaAlta;
-     private Set<Facturas> facturases = new HashSet<Facturas>(0);
-     private Set<Estados> estadoses = new HashSet<Estados>(0);
-     private Set<Usuarios> usuarioses = new HashSet<Usuarios>(0);
+     private Set usuarioses = new HashSet(0);
+     private Set estadoses = new HashSet(0);
+     private Set facturases = new HashSet(0);
 
     public Empleados() {
     }
@@ -33,7 +33,7 @@ public class Empleados  implements java.io.Serializable {
         this.apellido = apellido;
         this.nombre = nombre;
     }
-    public Empleados(Sucursales sucursales, String apellido, String nombre, Integer legajo, String cargo, String area, Date fechaAlta, Set<Facturas> facturases, Set<Estados> estadoses, Set<Usuarios> usuarioses) {
+    public Empleados(Sucursales sucursales, String apellido, String nombre, Integer legajo, String cargo, String area, Date fechaAlta, Set usuarioses, Set estadoses, Set facturases) {
        this.sucursales = sucursales;
        this.apellido = apellido;
        this.nombre = nombre;
@@ -41,9 +41,9 @@ public class Empleados  implements java.io.Serializable {
        this.cargo = cargo;
        this.area = area;
        this.fechaAlta = fechaAlta;
-       this.facturases = facturases;
-       this.estadoses = estadoses;
        this.usuarioses = usuarioses;
+       this.estadoses = estadoses;
+       this.facturases = facturases;
     }
    
     public Integer getIdEmpleado() {
@@ -102,26 +102,26 @@ public class Empleados  implements java.io.Serializable {
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
-    public Set<Facturas> getFacturases() {
-        return this.facturases;
-    }
-    
-    public void setFacturases(Set<Facturas> facturases) {
-        this.facturases = facturases;
-    }
-    public Set<Estados> getEstadoses() {
-        return this.estadoses;
-    }
-    
-    public void setEstadoses(Set<Estados> estadoses) {
-        this.estadoses = estadoses;
-    }
-    public Set<Usuarios> getUsuarioses() {
+    public Set getUsuarioses() {
         return this.usuarioses;
     }
     
-    public void setUsuarioses(Set<Usuarios> usuarioses) {
+    public void setUsuarioses(Set usuarioses) {
         this.usuarioses = usuarioses;
+    }
+    public Set getEstadoses() {
+        return this.estadoses;
+    }
+    
+    public void setEstadoses(Set estadoses) {
+        this.estadoses = estadoses;
+    }
+    public Set getFacturases() {
+        return this.facturases;
+    }
+    
+    public void setFacturases(Set facturases) {
+        this.facturases = facturases;
     }
 
 

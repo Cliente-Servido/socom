@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ public class Viajes  implements java.io.Serializable {
      private Date fechaLlegada;
      private String horaSalida;
      private String horaLlegada;
-     private Set<Paquetes> paqueteses = new HashSet<Paquetes>(0);
+     private Set paqueteses = new HashSet(0);
 
     public Viajes() {
     }
@@ -31,7 +31,7 @@ public class Viajes  implements java.io.Serializable {
         this.sucursalesByDestino = sucursalesByDestino;
         this.sucursalesByOrigen = sucursalesByOrigen;
     }
-    public Viajes(Camiones camiones, Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen, Date fechaSalida, Date fechaLlegada, String horaSalida, String horaLlegada, Set<Paquetes> paqueteses) {
+    public Viajes(Camiones camiones, Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen, Date fechaSalida, Date fechaLlegada, String horaSalida, String horaLlegada, Set paqueteses) {
        this.camiones = camiones;
        this.sucursalesByDestino = sucursalesByDestino;
        this.sucursalesByOrigen = sucursalesByOrigen;
@@ -98,11 +98,11 @@ public class Viajes  implements java.io.Serializable {
     public void setHoraLlegada(String horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
-    public Set<Paquetes> getPaqueteses() {
+    public Set getPaqueteses() {
         return this.paqueteses;
     }
     
-    public void setPaqueteses(Set<Paquetes> paqueteses) {
+    public void setPaqueteses(Set paqueteses) {
         this.paqueteses = paqueteses;
     }
 

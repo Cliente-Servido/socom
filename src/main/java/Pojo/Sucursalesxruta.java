@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 
@@ -8,26 +8,26 @@ package Pojo;
  */
 public class Sucursalesxruta  implements java.io.Serializable {
 
-    
+
      private Integer idSucursalesxRuta;
      private Rutas rutas;
-     private Sucursales sucursalesByDestino;
      private Sucursales sucursalesByOrigen;
+     private Sucursales sucursalesByDestino;
      private Integer secuencia;
 
     public Sucursalesxruta() {
     }
 
 	
-    public Sucursalesxruta(Rutas rutas, Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen) {
+    public Sucursalesxruta(Rutas rutas, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino) {
         this.rutas = rutas;
-        this.sucursalesByDestino = sucursalesByDestino;
         this.sucursalesByOrigen = sucursalesByOrigen;
+        this.sucursalesByDestino = sucursalesByDestino;
     }
-    public Sucursalesxruta(Rutas rutas, Sucursales sucursalesByDestino, Sucursales sucursalesByOrigen, Integer secuencia) {
+    public Sucursalesxruta(Rutas rutas, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, Integer secuencia) {
        this.rutas = rutas;
-       this.sucursalesByDestino = sucursalesByDestino;
        this.sucursalesByOrigen = sucursalesByOrigen;
+       this.sucursalesByDestino = sucursalesByDestino;
        this.secuencia = secuencia;
     }
    
@@ -45,19 +45,19 @@ public class Sucursalesxruta  implements java.io.Serializable {
     public void setRutas(Rutas rutas) {
         this.rutas = rutas;
     }
-    public Sucursales getSucursalesByDestino() {
-        return this.sucursalesByDestino;
-    }
-    
-    public void setSucursalesByDestino(Sucursales sucursalesByDestino) {
-        this.sucursalesByDestino = sucursalesByDestino;
-    }
     public Sucursales getSucursalesByOrigen() {
         return this.sucursalesByOrigen;
     }
     
     public void setSucursalesByOrigen(Sucursales sucursalesByOrigen) {
         this.sucursalesByOrigen = sucursalesByOrigen;
+    }
+    public Sucursales getSucursalesByDestino() {
+        return this.sucursalesByDestino;
+    }
+    
+    public void setSucursalesByDestino(Sucursales sucursalesByDestino) {
+        this.sucursalesByDestino = sucursalesByDestino;
     }
     public Integer getSecuencia() {
         return this.secuencia;

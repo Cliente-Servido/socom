@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Localidades  implements java.io.Serializable {
      private Integer idLocalidad;
      private Provincias provincias;
      private String nombre;
-     private Set<Sucursales> sucursaleses = new HashSet<Sucursales>(0);
+     private Set sucursaleses = new HashSet(0);
 
     public Localidades() {
     }
@@ -24,7 +24,7 @@ public class Localidades  implements java.io.Serializable {
         this.provincias = provincias;
         this.nombre = nombre;
     }
-    public Localidades(Provincias provincias, String nombre, Set<Sucursales> sucursaleses) {
+    public Localidades(Provincias provincias, String nombre, Set sucursaleses) {
        this.provincias = provincias;
        this.nombre = nombre;
        this.sucursaleses = sucursaleses;
@@ -51,11 +51,11 @@ public class Localidades  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public Set<Sucursales> getSucursaleses() {
+    public Set getSucursaleses() {
         return this.sucursaleses;
     }
     
-    public void setSucursaleses(Set<Sucursales> sucursaleses) {
+    public void setSucursaleses(Set sucursaleses) {
         this.sucursaleses = sucursaleses;
     }
 

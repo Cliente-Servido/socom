@@ -7,23 +7,21 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/socom?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">nb</property>
     <property name="hibernate.connection.password">123</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Pojo/Facturas.hbm.xml"/>
-    <mapping resource="Pojo/Empleados.hbm.xml"/>
-    <mapping resource="Pojo/Sucursalesxruta.hbm.xml"/>
-    <mapping resource="Pojo/Provincias.hbm.xml"/>
-    <mapping resource="Pojo/Viajes.hbm.xml"/>
-    <mapping resource="Pojo/Servicios.hbm.xml"/>
-    <mapping resource="Pojo/Sucursales.hbm.xml"/>
-    <mapping resource="Pojo/Localidades.hbm.xml"/>
-    <mapping resource="Pojo/Clientes.hbm.xml"/>
-    <mapping resource="Pojo/Estados.hbm.xml"/>
-    <mapping resource="Pojo/Usuarios.hbm.xml"/>
-    <mapping resource="Pojo/Paquetes.hbm.xml"/>
     <mapping resource="Pojo/Rutas.hbm.xml"/>
+    <mapping resource="Pojo/Clientes.hbm.xml"/>
+    <mapping resource="Pojo/Empleados.hbm.xml"/>
+    <mapping resource="Pojo/Sucursales.hbm.xml"/>
+    <mapping resource="Pojo/Usuarios.hbm.xml"/>
+    <mapping resource="Pojo/Facturas.hbm.xml"/>
+    <mapping resource="Pojo/Servicios.hbm.xml"/>
     <mapping resource="Pojo/Paises.hbm.xml"/>
+    <mapping resource="Pojo/Provincias.hbm.xml"/>
+    <mapping resource="Pojo/Localidades.hbm.xml"/>
     <mapping resource="Pojo/Gerentes.hbm.xml"/>
+    <mapping resource="Pojo/Viajes.hbm.xml"/>
+    <mapping resource="Pojo/Paquetes.hbm.xml"/>
+    <mapping resource="Pojo/Estados.hbm.xml"/>
     <mapping resource="Pojo/Camiones.hbm.xml"/>
+    <mapping resource="Pojo/Sucursalesxruta.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

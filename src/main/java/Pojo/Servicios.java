@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:30:32 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,12 +17,12 @@ public class Servicios  implements java.io.Serializable {
      private Float costokg;
      private Float costoseguro;
      private Float montoasegurado;
-     private Set<Paquetes> paqueteses = new HashSet<Paquetes>(0);
+     private Set paqueteses = new HashSet(0);
 
     public Servicios() {
     }
 
-    public Servicios(String nombre, String descripcion, Float costokg, Float costoseguro, Float montoasegurado, Set<Paquetes> paqueteses) {
+    public Servicios(String nombre, String descripcion, Float costokg, Float costoseguro, Float montoasegurado, Set paqueteses) {
        this.nombre = nombre;
        this.descripcion = descripcion;
        this.costokg = costokg;
@@ -73,11 +73,11 @@ public class Servicios  implements java.io.Serializable {
     public void setMontoasegurado(Float montoasegurado) {
         this.montoasegurado = montoasegurado;
     }
-    public Set<Paquetes> getPaqueteses() {
+    public Set getPaqueteses() {
         return this.paqueteses;
     }
     
-    public void setPaqueteses(Set<Paquetes> paqueteses) {
+    public void setPaqueteses(Set paqueteses) {
         this.paqueteses = paqueteses;
     }
 

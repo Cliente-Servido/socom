@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="socom"/>
+  <table-filter match-name="servicios"/>
+  <table-filter match-name="facturas"/>
+  <table-filter match-name="camiones"/>
+  <table-filter match-name="clientes"/>
+  <table-filter match-name="localidades"/>
+  <table-filter match-name="sucursales"/>
+  <table-filter match-name="paquetes"/>
+  <table-filter match-name="usuarios"/>
+  <table-filter match-name="sucursalesxruta"/>
+  <table-filter match-name="empleados"/>
+  <table-filter match-name="rutas"/>
+  <table-filter match-name="estados"/>
+  <table-filter match-name="provincias"/>
+  <table-filter match-name="paises"/>
+  <table-filter match-name="viajes"/>
+  <table-filter match-name="paquetesxviaje"/>
+  <table-filter match-name="gerentes"/>
+</hibernate-reverse-engineering>
