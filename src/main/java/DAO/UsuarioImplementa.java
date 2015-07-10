@@ -6,7 +6,9 @@
 package DAO;
 
 import Persistencia.HibernateUtil;
+import Pojo.Paquetes;
 import Pojo.Usuarios;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -16,7 +18,31 @@ import org.hibernate.Session;
  */
 public class UsuarioImplementa {
     
-   public boolean validar(String usuario,String contrasenia){
+   public boolean existeUsuario(String nombre){
+   Session session= null;
+        boolean result=false;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "from Usuarios u where u.usuario= '" + nombre +"'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				result=true;
+                                
+			}
+
+		} catch (Exception e) {
+			throw e;
+		}finally{
+                if(session==null){
+                session.close();
+                
+                }
+                }
+                return result;                
+   }
+    
+    public boolean validar(String usuario,String contrasenia){
         
         Session session= null;
         boolean result=false;
@@ -88,6 +114,25 @@ public class UsuarioImplementa {
                 }
                 return result;
     }
+    
+    public void grabarUsuario(Usuarios usuario){
+    Session session=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(usuario);
+            
+            session.getTransaction().commit();
+    }catch(HibernateException e){
+        System.out.println(e.getMessage());
+        session.getTransaction().rollback();
+    }finally{
+        if(session!=null){
+            session.close();
+        }
+        }
+    }
+    
 }
    
    

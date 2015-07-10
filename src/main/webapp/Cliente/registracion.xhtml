@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillas/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                   <p:messages id="messages" showDetail="true" autoUpdate="true" />
+ 
+                    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+                        <h:outputLabel value="Nombre para la cuenta *" />
+                        <p:inputText value="#{registracionBean.usuario}" required="true" />
+                        
+                        <h:outputLabel for="pwd1" value="Contraseña: *" />
+                        <p:password id="pwd1" value="#{registracionBean.pass}" match="pwd2" label="Contraseña1" required="true" />
+
+                        <h:outputLabel for="pwd2" value="Confirmar contraseña: *" />
+                        <p:password id="pwd2" value="#{registracionBean.pass}" label="Contrseña2" required="true" />
+                        
+                        <h:outputLabel value="Nombre *" />
+                        <p:inputText value="#{registracionBean.nombre}" required="true" />
+                        
+                        <h:outputLabel value="Apellido *" />
+                        <p:inputText value="#{registracionBean.apellido}" required="true" />
+                        
+                        <h:outputLabel value="Dirección *" />
+                        <p:inputText value="#{registracionBean.dir}" required="true"/>
+                        
+                        <h:outputLabel value="Teléfono de contacto" />
+                        <p:inputText value="#{registracionBean.telefono}" />
+                        
+                        <h:outputLabel value="Correo Electrónico" />
+                        <p:inputText value="#{registracionBean.email}"  />
+                    
+                    </h:panelGrid>
+
+                   <p:commandButton action="#{registracionBean.registrar()}" update="matchGrid" value="Registrarse" />
+                   
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
