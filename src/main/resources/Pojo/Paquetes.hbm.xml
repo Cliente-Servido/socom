@@ -32,7 +32,7 @@
         <property name="destinatarioDni" type="int">
             <column name="destinatarioDNI" not-null="true" />
         </property>
-        <property name="destinatarioDireccion" type="java.lang.Integer">
+        <property name="destinatarioDireccion" type="string">
             <column name="destinatarioDireccion" />
         </property>
         <property name="destinatarioTelefono" type="string">

@@ -17,7 +17,7 @@
                         <h:inputText value="#{sesionClienteBean.usuario}" required="true"/>
                         <h:outputLabel value="contraseña"/>
                         <h:inputSecret value="#{sesionClienteBean.contrasenia}" required="true"/>
-                        <h:commandButton value="ok" action="#{sesionClienteBean.validarUsuarioContrasenia()}"/>
+                        <h:commandButton value="ok" action="#{sesionClienteBean.validarUsuario()}"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>

@@ -4,31 +4,31 @@
 <xsd:import namespace="http://gps/" schemaLocation="http://localhost:8080/EmpresaGps/ProveedorCoordenadas?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="atualizarUbicacion">
-<part name="parameters" element="tns:atualizarUbicacion"/>
-</message>
-<message name="atualizarUbicacionResponse">
-<part name="parameters" element="tns:atualizarUbicacionResponse"/>
-</message>
 <message name="consultarUbicacion">
 <part name="parameters" element="tns:consultarUbicacion"/>
 </message>
 <message name="consultarUbicacionResponse">
 <part name="parameters" element="tns:consultarUbicacionResponse"/>
 </message>
+<message name="atualizarUbicacion">
+<part name="parameters" element="tns:atualizarUbicacion"/>
+</message>
+<message name="atualizarUbicacionResponse">
+<part name="parameters" element="tns:atualizarUbicacionResponse"/>
+</message>
 <portType name="ProveedorCoordenadas">
-<operation name="atualizarUbicacion">
-<input wsam:Action="http://gps/ProveedorCoordenadas/atualizarUbicacionRequest" message="tns:atualizarUbicacion"/>
-<output wsam:Action="http://gps/ProveedorCoordenadas/atualizarUbicacionResponse" message="tns:atualizarUbicacionResponse"/>
-</operation>
 <operation name="consultarUbicacion">
 <input wsam:Action="http://gps/ProveedorCoordenadas/consultarUbicacionRequest" message="tns:consultarUbicacion"/>
 <output wsam:Action="http://gps/ProveedorCoordenadas/consultarUbicacionResponse" message="tns:consultarUbicacionResponse"/>
 </operation>
+<operation name="atualizarUbicacion">
+<input wsam:Action="http://gps/ProveedorCoordenadas/atualizarUbicacionRequest" message="tns:atualizarUbicacion"/>
+<output wsam:Action="http://gps/ProveedorCoordenadas/atualizarUbicacionResponse" message="tns:atualizarUbicacionResponse"/>
+</operation>
 </portType>
 <binding name="ProveedorCoordenadasPortBinding" type="tns:ProveedorCoordenadas">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="atualizarUbicacion">
+<operation name="consultarUbicacion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -37,7 +37,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="consultarUbicacion">
+<operation name="atualizarUbicacion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

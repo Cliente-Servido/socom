@@ -27,7 +27,26 @@ public class SucursalesImplementa implements SucursalesDAO{
            session=HibernateUtil.getSessionFactory().openSession();
            Query query=session.createQuery("from Surcursales");
            suc=(List<Sucursales>) query.list();
-           System.out.println(suc.get(1).getDescripcion());
+       }
+       catch(HibernateException e){
+           System.out.println(e.getMessage());
+       }
+       finally{
+           if(session!=null){
+               session.close();
+           }
+       }
+       return suc;
+    }
+    
+    public Sucursales buscarSucursal(String id) {
+       Session session=null;
+       Sucursales suc=null;
+       
+       try{
+           session=HibernateUtil.getSessionFactory().openSession();
+           Query query=session.createQuery("from Sucursales where idSucursal="+id);
+           suc=(Sucursales) query.uniqueResult();
        }
        catch(HibernateException e){
            System.out.println(e.getMessage());
@@ -59,24 +78,6 @@ public class SucursalesImplementa implements SucursalesDAO{
        }
        return suc;
     }
-    @Override
-     public List<Sucursales> mostraSucursales2() {
-       Session session=null;
-       List<Sucursales> suc=null;
-       
-       try{
-           session=HibernateUtil.getSessionFactory().getCurrentSession();
-           Query query=session.createQuery("from Surcursales");
-           suc=(List<Sucursales>) query.list();
-       }
-       catch(HibernateException e){
-           System.out.println(e.getMessage());
-       }
-       finally{
-           if(session!=null){
-               session.close();
-           }
-       }
-       return suc;
-    }
+    
+    
 }

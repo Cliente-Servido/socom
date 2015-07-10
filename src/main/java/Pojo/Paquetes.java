@@ -20,7 +20,7 @@ public class Paquetes  implements java.io.Serializable {
      private Float costoTotal;
      private String destinatarioNombre;
      private int destinatarioDni;
-     private Integer destinatarioDireccion;
+     private String destinatarioDireccion;
      private String destinatarioTelefono;
      private String destinatarioEmail;
      private Set<Viajes> viajeses = new HashSet<Viajes>(0);
@@ -36,7 +36,7 @@ public class Paquetes  implements java.io.Serializable {
         this.destinatarioNombre = destinatarioNombre;
         this.destinatarioDni = destinatarioDni;
     }
-    public Paquetes(Facturas facturas, Servicios servicios, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, Float peso, Float costoTotal, String destinatarioNombre, int destinatarioDni, Integer destinatarioDireccion, String destinatarioTelefono, String destinatarioEmail, Set<Viajes> viajeses, Set<Estados> estadoses) {
+    public Paquetes(Facturas facturas, Servicios servicios, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, Float peso, Float costoTotal, String destinatarioNombre, int destinatarioDni, String destinatarioDireccion, String destinatarioTelefono, String destinatarioEmail, Set<Viajes> viajeses, Set<Estados> estadoses) {
        this.facturas = facturas;
        this.servicios = servicios;
        this.sucursalesByOrigen = sucursalesByOrigen;
@@ -115,11 +115,11 @@ public class Paquetes  implements java.io.Serializable {
     public void setDestinatarioDni(int destinatarioDni) {
         this.destinatarioDni = destinatarioDni;
     }
-    public Integer getDestinatarioDireccion() {
+    public String getDestinatarioDireccion() {
         return this.destinatarioDireccion;
     }
     
-    public void setDestinatarioDireccion(Integer destinatarioDireccion) {
+    public void setDestinatarioDireccion(String destinatarioDireccion) {
         this.destinatarioDireccion = destinatarioDireccion;
     }
     public String getDestinatarioTelefono() {
