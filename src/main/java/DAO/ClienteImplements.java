@@ -8,6 +8,7 @@ package DAO;
 import Persistencia.HibernateUtil;
 import Pojo.Clientes;
 import Pojo.Servicios;
+import Pojo.Usuarios;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,5 +39,23 @@ public class ClienteImplements {
         session.close();}
     }return cli;
     
-}
+    }
+    
+    public void grabarCliente(Clientes cliente){
+    Session session=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(cliente);
+            
+            session.getTransaction().commit();
+    }catch(HibernateException e){
+        System.out.println(e.getMessage());
+        session.getTransaction().rollback();
+    }finally{
+        if(session!=null){
+            session.close();
+        }
+        }
+    }
 }

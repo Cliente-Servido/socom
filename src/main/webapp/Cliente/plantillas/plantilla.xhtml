@@ -39,18 +39,17 @@
             </h:panelGrid>
         </p:layoutUnit>
             
-        <p:layoutUnit position="center" id="formulario">
+            <p:layoutUnit position="center" id="formulario" minSize="500">
             <p:panel>
                 <ui:insert name="content"> 2222222222222</ui:insert>
             </p:panel>
         </p:layoutUnit>
             
-        <p:layoutUnit id="logueo" position="east" resizable="true" header="Ingresar">
+        <p:layoutUnit id="logueo" position="east">
             <h:form>
             <p:panelGrid columns="1">
-                <h:panelGrid rendered="#{sesionClienteBean.estalogeado eq false}">
+                <h:panelGrid columns="1" rendered="#{sesionClienteBean.estalogeado eq false}">
                 <h:outputLabel value="Sesión no iniciadia"  />
-                
                 
                 <h:panelGrid columns="2" >
                     <h:outputLabel value="usuario"/>
@@ -58,16 +57,22 @@
                     <h:outputLabel value="contraseña"/>
                     <h:inputSecret value="#{sesionClienteBean.contrasenia}" required="true"/>
                     <h:commandButton value="ok" action="#{sesionClienteBean.validarUsuario()}"/>
+                    <h:panelGroup/>
+                    
                 </h:panelGrid>
+                
+                    
+                <h:outputLabel value="Aún no tienes una cuenta?"/>
+                <h:link value="Registrarse" outcome="/Cliente/registracion" />
+                    
                 
                 </h:panelGrid>
                 
                 
                 <p:panelGrid rendered="#{sesionClienteBean.estalogeado}" columns="1" >
-                <h5>Bienvenido Usuario:</h5>
-                <h:outputLabel value="#{sesionClienteBean.usuario}" />
-                 <h:commandButton value="Cerrar Sesión"
-                    action="#{sesionClienteBean.logout()}" />
+                    <h5>Bienvenido Usuario:</h5>
+                    <h:outputLabel value="#{sesionClienteBean.usuario}" />
+                    <h:commandButton value="Cerrar Sesión" action="#{sesionClienteBean.logout()}" />
                 </p:panelGrid>
                 
            </p:panelGrid>
