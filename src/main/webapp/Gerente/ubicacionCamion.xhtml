@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+       <h:body>
+
+        <ui:composition template="./plantillas/plantilla.xhtml">
+         <ui:define name="content"> 
+             
+                    <h3>Localizacion de los camiones</h3>
+                <h:form>
+                    <h4>Buscar camion por patente</h4>
+                        <p:panelGrid columns="2"  >
+                            <p:outputLabel value="Patente"/>
+                            <p:inputText value="#{camionBean.camion.dominio}" />
+                            <p:commandButton actionListener="#{camionBean.consultarUbicacion()}" value="Buscar"  update=":formMostrar" />
+                        </p:panelGrid>
+                </h:form>
+    
+                    
+  <h:form id="formMostrar">
+      <p:dataTable var="cam" value="#{camionBean.listaActualizada()}"
+                         emptyMessage="No hay camiones disponibles"
+paginator="true" rows="10" paginatorPosition="top"
+paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+{PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+rowsPerPageTemplate="10"
+                         >
+                <p:column headerText="ID de camion">
+                    <h:outputText value="#{cam.idCamion}"/>
+                </p:column>
+                <p:column headerText="Dominio de camion">
+                    <h:outputText value="#{cam.dominio}"/>
+                </p:column>
+                <p:column headerText="Modelo">
+                    <h:outputText value="#{cam.modelo}"/>
+                </p:column>
+               <p:column headerText="Latitud">
+                   <h:outputText value="#{camionBean.latitudCamion}"/>
+                </p:column>
+                <p:column headerText="Longitud">
+                    <h:outputText value="#{camionBean.longitudCamion}"/>
+                </p:column>
+                
+            </p:dataTable>
+            
+        </h:form>
+        
+                    <h4>Servicio proveeido por la Empresa GPS</h4>
+                    
+             </ui:define>
+             </ui:composition>
+         </h:body>
+ 
+</html>

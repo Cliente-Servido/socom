@@ -6,6 +6,7 @@ import Persistencia.HibernateUtil;
 import Pojo.Camiones;
 import Pojo.Rutas;
 import Pojo.Viajes;
+import gps.ProveedorCoordenadas_Service;
 
 
 import java.io.Serializable;
@@ -30,8 +31,26 @@ import org.hibernate.Session;
 @ViewScoped
 public class CamionBean implements Serializable {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/EmpresaGps/ProveedorCoordenadas.wsdl")
-    private gps.ProveedorCoordenadas_Service service;
+    private ProveedorCoordenadas_Service service;
    
+   float latitudCamion;
+
+    public float getLatitudCamion() {
+        return latitudCamion;
+    }
+
+    public void setLatitudCamion(float latitudCamion) {
+        this.latitudCamion = latitudCamion;
+    }
+
+    public float getLongitudCamion() {
+        return longitudCamion;
+    }
+
+    public void setLongitudCamion(float longitudCamion) {
+        this.longitudCamion = longitudCamion;
+    }
+   float longitudCamion;
     int idCamion; 
 
     public int getIdCamion() {
@@ -195,25 +214,22 @@ public class CamionBean implements Serializable {
     }}
    
     public void consultarUbicacion(){
-        
-        
-        try { // Call Web Service Operation
-            gps.ProveedorCoordenadas port = service.getProveedorCoordenadasPort();
-            // TODO initialize WS operation arguments here
-            java.lang.String dominio = "";
-            // TODO process result here
-            java.util.List<java.lang.Float> result = port.consultarUbicacion(dominio);
-            System.out.println("Result = "+result);
-        } catch (Exception ex) {
-            // TODO handle custom exceptions here
-        }
-
-        
-        
-        }
-
-       
-    
+           busqueda();
+           
+           
+           try { // Call Web Service Operation
+               gps.ProveedorCoordenadas port = service.getProveedorCoordenadasPort();
+               // TODO initialize WS operation arguments here
+               java.lang.String dominio = "";
+               // TODO process result here
+               java.util.List<java.lang.Float> result = port.consultarUbicacion(camion.getDominio());
+               latitudCamion=result.get(0);
+               longitudCamion=result.get(1);
+               System.out.println(result.size());
+           } catch (Exception ex) {
+               // TODO handle custom exceptions here
+           }
+           }
     
     public void BusquedaId(){
         
@@ -233,7 +249,8 @@ public class CamionBean implements Serializable {
         lista.add(camion);
         setCamionesAct(lista);}
     }
-    }
+}
+    
     
     
     

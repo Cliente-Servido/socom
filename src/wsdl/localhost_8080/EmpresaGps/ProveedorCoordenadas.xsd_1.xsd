@@ -8,6 +8,18 @@
 
 <xs:element name="consultarUbicacionResponse" type="tns:consultarUbicacionResponse"/>
 
+<xs:complexType name="consultarUbicacion">
+<xs:sequence>
+<xs:element name="dominio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarUbicacionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:float" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="atualizarUbicacion">
 <xs:sequence>
 <xs:element name="dominio" type="xs:string" minOccurs="0"/>
@@ -19,18 +31,6 @@
 <xs:complexType name="atualizarUbicacionResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="consultarUbicacion">
-<xs:sequence>
-<xs:element name="dominio" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="consultarUbicacionResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:float" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

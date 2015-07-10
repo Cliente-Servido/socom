@@ -26,14 +26,10 @@
                             <p:growl id="mensageGeneral" showDetail="true" sticky="false"/>
                         <p:panelGrid columns="2"  >
                             
-                            <p:outputLabel value="Id Cliente"/>
-                            <p:inputText value="#{facturaBean.idCliente}"/>
+                           
                             
                             <p:outputLabel value="Id Paquete"/>
                             <p:inputText value="#{facturaBean.idPaquete}"/>
-                            
-                            <p:outputLabel value="Costo"/>
-                            <p:inputText value="#{facturaBean.factura.monto}"/>
                             
                            <p:outputLabel value="Fecha"/>
                            <p:inputText value="#{facturaBean.fecha}"/>
@@ -45,7 +41,7 @@
                     </h:form>
             
 <h:form id="formMostrar">
-    <p:dataTable var="fac" value="#{facturaBean.paquetes}"
+    <p:dataTable var="paq" value="#{facturaBean.paquetes}"
                          emptyMessage="No hay paquetes"
 paginator="true" rows="10" paginatorPosition="top"
 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
@@ -53,12 +49,13 @@ paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
 rowsPerPageTemplate="10"
                          >
                 <p:column headerText="ID paquete">
-                    <h:outputText value="#{fac.idPaquete}"/>
+                    <h:outputText value="#{paq.idPaquete}"/>
                 </p:column>
                
                 <p:column headerText="Costo total">
-                    <h:outputText value="#{fac.costoTotal}"/>
+                    <h:outputText value="#{paq.costoTotal}"/>
                 </p:column>
+        
                 
                 
                              

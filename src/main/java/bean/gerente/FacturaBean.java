@@ -39,7 +39,15 @@ import org.hibernate.Session;
 @ManagedBean
 @ViewScoped
 public class FacturaBean implements Serializable {
+    Paquetes paquete;
 
+    public Paquetes getPaquete() {
+        return paquete;
+    }
+
+    public void setPaquete(Paquetes paquete) {
+        this.paquete = paquete;
+    }
     Facturas factura;
     List<Facturas> facturas;
     Integer idCliente;
@@ -94,7 +102,7 @@ public class FacturaBean implements Serializable {
     
     @PostConstruct
     public void init() {
-              
+        paquete=new Paquetes();
         factura = new Facturas();
         linkDAO= new FacturaImplements();
         linkDaoP = new PaqueteImplements();
@@ -108,7 +116,7 @@ public class FacturaBean implements Serializable {
         try {
  
 		Date date = formatter.parse(fecha);
-                this.factura.setFecha(date);
+                factura.setFecha(date);
 		System.out.println(date);
 		System.out.println(formatter.format(date));
  
@@ -116,16 +124,16 @@ public class FacturaBean implements Serializable {
 		e.printStackTrace();
 	}
         
-        System.out.println("estoy insertando factura");
-        /* Busca el empleado actual y lo guarda en factura*/
         HttpSession miSesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         final Usuarios usuario= (Usuarios)miSesion.getAttribute("usuario");
-        this.factura.setEmpleados((Empleados)usuario.getEmpleados());
-        asignarCliente();
-      
+        factura.setEmpleados((Empleados)usuario.getEmpleados());
+     
+        buscarpaquete();
+        factura.setClientes(paquete.getClientes());
+        factura.setMonto(paquete.getCostoTotal());
         linkDAO.insertarFactura(factura);
          asignarPaquete();
-        factura= new Facturas();
+         factura= new Facturas();
     }
     public void modificar(){
         linkDAO.modificarFactura(factura);
@@ -154,30 +162,14 @@ public class FacturaBean implements Serializable {
         this.facturas = facturas;
     }
     
-    public void asignarCliente(){
-    Clientes cliente1;
-    Session session = null;
-    try{
-        session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from Clientes c WHERE c.idCliente = :idCliente");
-        query.setParameter("idCliente", idCliente);
-        cliente1 = (Clientes)query.uniqueResult();
-       factura.setClientes(cliente1);
-    }catch(HibernateException e){
-    System.out.println(e.getMessage());
-    session.getTransaction().rollback();
-    }
-    finally {
-        if(session != null){
-        session.close();}
-    }}
-
+    
+    
  
     public void asignarPaquete(){
    facturas= linkDAO.mostrarFacturas();
-    Paquetes paq= linkDaoP.getPaquete(idPaquete);
-    paq.setFacturas(facturas.get((facturas.size())-1));
-    linkDaoP.modificarPaquete(paq);
+    Paquetes paquete= linkDaoP.getPaquete(idPaquete);
+    paquete.setFacturas(facturas.get((facturas.size())-1));
+   linkDaoP.modificarPaquete(paquete);
         System.out.println("asigne factura a paquete");
     }
    
@@ -192,13 +184,14 @@ public class FacturaBean implements Serializable {
     
     public void buscarpaquete(){
         System.out.println(idPaquete);
-       final Paquetes paq= linkDaoP.getPaquete(idPaquete);
-        System.out.println("aca:");
-        System.out.println(paq.getDestinatarioNombre());
-         List<Paquetes> lista = new ArrayList<Paquetes>();
-       lista.add(paq);
+       paquete= linkDaoP.getPaquete(idPaquete);
+    
+       List<Paquetes> lista = new ArrayList<Paquetes>();
+       lista.add(paquete);
         setPaquetes(lista);
     }
+    
+   
 }
     
 
