@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-jul-2015 22:43:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojo.Paquetes" table="paquetes" catalog="socom" optimistic-lock="version">
         <id name="idPaquete" type="java.lang.Integer">
             <column name="idPaquete" />
             <generator class="identity" />
         </id>
+        <many-to-one name="clientes" class="Pojo.Clientes" fetch="select">
+            <column name="idCliente" />
+        </many-to-one>
         <many-to-one name="facturas" class="Pojo.Facturas" fetch="select">
             <column name="idFactura" />
         </many-to-one>
@@ -33,7 +36,7 @@
             <column name="destinatarioDNI" not-null="true" />
         </property>
         <property name="destinatarioDireccion" type="string">
-            <column name="destinatarioDireccion" />
+            <column name="destinatarioDireccion" length="50" />
         </property>
         <property name="destinatarioTelefono" type="string">
             <column name="destinatarioTelefono" length="20" />
@@ -41,6 +44,12 @@
         <property name="destinatarioEmail" type="string">
             <column name="destinatarioEmail" length="30" />
         </property>
+        <set name="estadoses" table="estados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPaquete" not-null="true" />
+            </key>
+            <one-to-many class="Pojo.Estados" />
+        </set>
         <set name="viajeses" table="paquetesxviaje" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idPaquete" not-null="true" />
@@ -48,12 +57,6 @@
             <many-to-many entity-name="Pojo.Viajes">
                 <column name="idViaje" not-null="true" />
             </many-to-many>
-        </set>
-        <set name="estadoses" table="estados" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idPaquete" not-null="true" />
-            </key>
-            <one-to-many class="Pojo.Estados" />
         </set>
     </class>
 </hibernate-mapping>

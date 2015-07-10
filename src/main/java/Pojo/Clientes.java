@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,8 +17,9 @@ public class Clientes  implements java.io.Serializable {
      private String direccion;
      private String telefono;
      private String email;
-     private Set<Facturas> facturases = new HashSet<Facturas>(0);
-     private Set<Usuarios> usuarioses = new HashSet<Usuarios>(0);
+     private Set usuarioses = new HashSet(0);
+     private Set facturases = new HashSet(0);
+     private Set paqueteses = new HashSet(0);
 
     public Clientes() {
     }
@@ -29,14 +30,15 @@ public class Clientes  implements java.io.Serializable {
         this.nombre = nombre;
         this.direccion = direccion;
     }
-    public Clientes(String apellido, String nombre, String direccion, String telefono, String email, Set<Facturas> facturases, Set<Usuarios> usuarioses) {
+    public Clientes(String apellido, String nombre, String direccion, String telefono, String email, Set usuarioses, Set facturases, Set paqueteses) {
        this.apellido = apellido;
        this.nombre = nombre;
        this.direccion = direccion;
        this.telefono = telefono;
        this.email = email;
-       this.facturases = facturases;
        this.usuarioses = usuarioses;
+       this.facturases = facturases;
+       this.paqueteses = paqueteses;
     }
    
     public Integer getIdCliente() {
@@ -81,19 +83,26 @@ public class Clientes  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Set<Facturas> getFacturases() {
-        return this.facturases;
-    }
-    
-    public void setFacturases(Set<Facturas> facturases) {
-        this.facturases = facturases;
-    }
-    public Set<Usuarios> getUsuarioses() {
+    public Set getUsuarioses() {
         return this.usuarioses;
     }
     
-    public void setUsuarioses(Set<Usuarios> usuarioses) {
+    public void setUsuarioses(Set usuarioses) {
         this.usuarioses = usuarioses;
+    }
+    public Set getFacturases() {
+        return this.facturases;
+    }
+    
+    public void setFacturases(Set facturases) {
+        this.facturases = facturases;
+    }
+    public Set getPaqueteses() {
+        return this.paqueteses;
+    }
+    
+    public void setPaqueteses(Set paqueteses) {
+        this.paqueteses = paqueteses;
     }
 
 

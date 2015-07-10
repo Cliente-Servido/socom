@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Paquetes  implements java.io.Serializable {
 
 
      private Integer idPaquete;
+     private Clientes clientes;
      private Facturas facturas;
      private Servicios servicios;
      private Sucursales sucursalesByOrigen;
@@ -23,8 +24,8 @@ public class Paquetes  implements java.io.Serializable {
      private String destinatarioDireccion;
      private String destinatarioTelefono;
      private String destinatarioEmail;
-     private Set<Viajes> viajeses = new HashSet<Viajes>(0);
-     private Set<Estados> estadoses = new HashSet<Estados>(0);
+     private Set estadoses = new HashSet(0);
+     private Set viajeses = new HashSet(0);
 
     public Paquetes() {
     }
@@ -36,7 +37,8 @@ public class Paquetes  implements java.io.Serializable {
         this.destinatarioNombre = destinatarioNombre;
         this.destinatarioDni = destinatarioDni;
     }
-    public Paquetes(Facturas facturas, Servicios servicios, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, Float peso, Float costoTotal, String destinatarioNombre, int destinatarioDni, String destinatarioDireccion, String destinatarioTelefono, String destinatarioEmail, Set<Viajes> viajeses, Set<Estados> estadoses) {
+    public Paquetes(Clientes clientes, Facturas facturas, Servicios servicios, Sucursales sucursalesByOrigen, Sucursales sucursalesByDestino, Float peso, Float costoTotal, String destinatarioNombre, int destinatarioDni, String destinatarioDireccion, String destinatarioTelefono, String destinatarioEmail, Set estadoses, Set viajeses) {
+       this.clientes = clientes;
        this.facturas = facturas;
        this.servicios = servicios;
        this.sucursalesByOrigen = sucursalesByOrigen;
@@ -48,8 +50,8 @@ public class Paquetes  implements java.io.Serializable {
        this.destinatarioDireccion = destinatarioDireccion;
        this.destinatarioTelefono = destinatarioTelefono;
        this.destinatarioEmail = destinatarioEmail;
-       this.viajeses = viajeses;
        this.estadoses = estadoses;
+       this.viajeses = viajeses;
     }
    
     public Integer getIdPaquete() {
@@ -58,6 +60,13 @@ public class Paquetes  implements java.io.Serializable {
     
     public void setIdPaquete(Integer idPaquete) {
         this.idPaquete = idPaquete;
+    }
+    public Clientes getClientes() {
+        return this.clientes;
+    }
+    
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
     public Facturas getFacturas() {
         return this.facturas;
@@ -136,19 +145,19 @@ public class Paquetes  implements java.io.Serializable {
     public void setDestinatarioEmail(String destinatarioEmail) {
         this.destinatarioEmail = destinatarioEmail;
     }
-    public Set<Viajes> getViajeses() {
-        return this.viajeses;
-    }
-    
-    public void setViajeses(Set<Viajes> viajeses) {
-        this.viajeses = viajeses;
-    }
-    public Set<Estados> getEstadoses() {
+    public Set getEstadoses() {
         return this.estadoses;
     }
     
-    public void setEstadoses(Set<Estados> estadoses) {
+    public void setEstadoses(Set estadoses) {
         this.estadoses = estadoses;
+    }
+    public Set getViajeses() {
+        return this.viajeses;
+    }
+    
+    public void setViajeses(Set viajeses) {
+        this.viajeses = viajeses;
     }
 
 

@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 13:00:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-jul-2015 22:43:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojo.Rutas" table="rutas" catalog="socom" optimistic-lock="version">
         <id name="idRuta" type="java.lang.Integer">
             <column name="idRuta" />
             <generator class="identity" />
         </id>
-        <many-to-one name="sucursalesByDestino" class="Pojo.Sucursales" fetch="select">
-            <column name="destino" not-null="true" />
-        </many-to-one>
         <many-to-one name="sucursalesByOrigen" class="Pojo.Sucursales" fetch="select">
             <column name="origen" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursalesByDestino" class="Pojo.Sucursales" fetch="select">
+            <column name="destino" not-null="true" />
         </many-to-one>
         <property name="descripcion" type="string">
             <column name="descripcion" length="60" />

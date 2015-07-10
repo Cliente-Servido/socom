@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,12 +18,12 @@ public class Camiones  implements java.io.Serializable {
      private String dominio;
      private Integer anio;
      private String descripcion;
-     private Set<Viajes> viajeses = new HashSet<Viajes>(0);
+     private Set viajeses = new HashSet(0);
 
     public Camiones() {
     }
 
-    public Camiones(Rutas rutas, String marca, String modelo, String dominio, Integer anio, String descripcion, Set<Viajes> viajeses) {
+    public Camiones(Rutas rutas, String marca, String modelo, String dominio, Integer anio, String descripcion, Set viajeses) {
        this.rutas = rutas;
        this.marca = marca;
        this.modelo = modelo;
@@ -82,11 +82,11 @@ public class Camiones  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<Viajes> getViajeses() {
+    public Set getViajeses() {
         return this.viajeses;
     }
     
-    public void setViajeses(Set<Viajes> viajeses) {
+    public void setViajeses(Set viajeses) {
         this.viajeses = viajeses;
     }
 

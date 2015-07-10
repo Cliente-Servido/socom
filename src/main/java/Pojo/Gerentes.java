@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Gerentes  implements java.io.Serializable {
      private String apellido;
      private String nombre;
      private Integer legajo;
-     private Set<Usuarios> usuarioses = new HashSet<Usuarios>(0);
+     private Set usuarioses = new HashSet(0);
 
     public Gerentes() {
     }
@@ -27,7 +27,7 @@ public class Gerentes  implements java.io.Serializable {
         this.apellido = apellido;
         this.nombre = nombre;
     }
-    public Gerentes(Sucursales sucursales, String apellido, String nombre, Integer legajo, Set<Usuarios> usuarioses) {
+    public Gerentes(Sucursales sucursales, String apellido, String nombre, Integer legajo, Set usuarioses) {
        this.sucursales = sucursales;
        this.apellido = apellido;
        this.nombre = nombre;
@@ -70,11 +70,11 @@ public class Gerentes  implements java.io.Serializable {
     public void setLegajo(Integer legajo) {
         this.legajo = legajo;
     }
-    public Set<Usuarios> getUsuarioses() {
+    public Set getUsuarioses() {
         return this.usuarioses;
     }
     
-    public void setUsuarioses(Set<Usuarios> usuarioses) {
+    public void setUsuarioses(Set usuarioses) {
         this.usuarioses = usuarioses;
     }
 

@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,12 +17,12 @@ public class Facturas  implements java.io.Serializable {
      private Empleados empleados;
      private Date fecha;
      private Float monto;
-     private Set<Paquetes> paqueteses = new HashSet<Paquetes>(0);
+     private Set paqueteses = new HashSet(0);
 
     public Facturas() {
     }
 
-    public Facturas(Clientes clientes, Empleados empleados, Date fecha, Float monto, Set<Paquetes> paqueteses) {
+    public Facturas(Clientes clientes, Empleados empleados, Date fecha, Float monto, Set paqueteses) {
        this.clientes = clientes;
        this.empleados = empleados;
        this.fecha = fecha;
@@ -65,11 +65,11 @@ public class Facturas  implements java.io.Serializable {
     public void setMonto(Float monto) {
         this.monto = monto;
     }
-    public Set<Paquetes> getPaqueteses() {
+    public Set getPaqueteses() {
         return this.paqueteses;
     }
     
-    public void setPaqueteses(Set<Paquetes> paqueteses) {
+    public void setPaqueteses(Set paqueteses) {
         this.paqueteses = paqueteses;
     }
 

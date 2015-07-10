@@ -1,5 +1,5 @@
 package Pojo;
-// Generated 19/06/2015 12:59:55 by Hibernate Tools 4.3.1
+// Generated 09-jul-2015 22:43:00 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,22 +11,22 @@ import java.util.Set;
 public class Sucursales  implements java.io.Serializable {
 
 
-     public Integer idSucursal;
+     private Integer idSucursal;
      private Localidades localidades;
      private String direccion;
      private String horario;
      private String descripcion;
-     private Set<Rutas> rutasesForDestino = new HashSet<Rutas>(0);
-     private Set<Rutas> rutasesForOrigen = new HashSet<Rutas>(0);
-     private Set<Gerentes> gerenteses = new HashSet<Gerentes>(0);
-     private Set<Paquetes> paquetesesForOrigen = new HashSet<Paquetes>(0);
-     private Set<Paquetes> paquetesesForDestino = new HashSet<Paquetes>(0);
-     private Set<Estados> estadoses = new HashSet<Estados>(0);
-     private Set<Empleados> empleadoses = new HashSet<Empleados>(0);
-     private Set<Sucursalesxruta> sucursalesxrutasForDestino = new HashSet<Sucursalesxruta>(0);
-     private Set<Viajes> viajesesForDestino = new HashSet<Viajes>(0);
-     private Set<Sucursalesxruta> sucursalesxrutasForOrigen = new HashSet<Sucursalesxruta>(0);
-     private Set<Viajes> viajesesForOrigen = new HashSet<Viajes>(0);
+     private Set estadoses = new HashSet(0);
+     private Set viajesesForDestino = new HashSet(0);
+     private Set sucursalesxrutasForOrigen = new HashSet(0);
+     private Set paquetesesForOrigen = new HashSet(0);
+     private Set viajesesForOrigen = new HashSet(0);
+     private Set sucursalesxrutasForDestino = new HashSet(0);
+     private Set empleadoses = new HashSet(0);
+     private Set rutasesForOrigen = new HashSet(0);
+     private Set gerenteses = new HashSet(0);
+     private Set rutasesForDestino = new HashSet(0);
+     private Set paquetesesForDestino = new HashSet(0);
 
     public Sucursales() {
     }
@@ -35,22 +35,22 @@ public class Sucursales  implements java.io.Serializable {
     public Sucursales(Localidades localidades) {
         this.localidades = localidades;
     }
-    public Sucursales(Localidades localidades, String direccion, String horario, String descripcion, Set<Rutas> rutasesForDestino, Set<Rutas> rutasesForOrigen, Set<Gerentes> gerenteses, Set<Paquetes> paquetesesForOrigen, Set<Paquetes> paquetesesForDestino, Set<Estados> estadoses, Set<Empleados> empleadoses, Set<Sucursalesxruta> sucursalesxrutasForDestino, Set<Viajes> viajesesForDestino, Set<Sucursalesxruta> sucursalesxrutasForOrigen, Set<Viajes> viajesesForOrigen) {
+    public Sucursales(Localidades localidades, String direccion, String horario, String descripcion, Set estadoses, Set viajesesForDestino, Set sucursalesxrutasForOrigen, Set paquetesesForOrigen, Set viajesesForOrigen, Set sucursalesxrutasForDestino, Set empleadoses, Set rutasesForOrigen, Set gerenteses, Set rutasesForDestino, Set paquetesesForDestino) {
        this.localidades = localidades;
        this.direccion = direccion;
        this.horario = horario;
        this.descripcion = descripcion;
-       this.rutasesForDestino = rutasesForDestino;
-       this.rutasesForOrigen = rutasesForOrigen;
-       this.gerenteses = gerenteses;
-       this.paquetesesForOrigen = paquetesesForOrigen;
-       this.paquetesesForDestino = paquetesesForDestino;
        this.estadoses = estadoses;
-       this.empleadoses = empleadoses;
-       this.sucursalesxrutasForDestino = sucursalesxrutasForDestino;
        this.viajesesForDestino = viajesesForDestino;
        this.sucursalesxrutasForOrigen = sucursalesxrutasForOrigen;
+       this.paquetesesForOrigen = paquetesesForOrigen;
        this.viajesesForOrigen = viajesesForOrigen;
+       this.sucursalesxrutasForDestino = sucursalesxrutasForDestino;
+       this.empleadoses = empleadoses;
+       this.rutasesForOrigen = rutasesForOrigen;
+       this.gerenteses = gerenteses;
+       this.rutasesForDestino = rutasesForDestino;
+       this.paquetesesForDestino = paquetesesForDestino;
     }
    
     public Integer getIdSucursal() {
@@ -88,82 +88,82 @@ public class Sucursales  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<Rutas> getRutasesForDestino() {
-        return this.rutasesForDestino;
-    }
-    
-    public void setRutasesForDestino(Set<Rutas> rutasesForDestino) {
-        this.rutasesForDestino = rutasesForDestino;
-    }
-    public Set<Rutas> getRutasesForOrigen() {
-        return this.rutasesForOrigen;
-    }
-    
-    public void setRutasesForOrigen(Set<Rutas> rutasesForOrigen) {
-        this.rutasesForOrigen = rutasesForOrigen;
-    }
-    public Set<Gerentes> getGerenteses() {
-        return this.gerenteses;
-    }
-    
-    public void setGerenteses(Set<Gerentes> gerenteses) {
-        this.gerenteses = gerenteses;
-    }
-    public Set<Paquetes> getPaquetesesForOrigen() {
-        return this.paquetesesForOrigen;
-    }
-    
-    public void setPaquetesesForOrigen(Set<Paquetes> paquetesesForOrigen) {
-        this.paquetesesForOrigen = paquetesesForOrigen;
-    }
-    public Set<Paquetes> getPaquetesesForDestino() {
-        return this.paquetesesForDestino;
-    }
-    
-    public void setPaquetesesForDestino(Set<Paquetes> paquetesesForDestino) {
-        this.paquetesesForDestino = paquetesesForDestino;
-    }
-    public Set<Estados> getEstadoses() {
+    public Set getEstadoses() {
         return this.estadoses;
     }
     
-    public void setEstadoses(Set<Estados> estadoses) {
+    public void setEstadoses(Set estadoses) {
         this.estadoses = estadoses;
     }
-    public Set<Empleados> getEmpleadoses() {
-        return this.empleadoses;
-    }
-    
-    public void setEmpleadoses(Set<Empleados> empleadoses) {
-        this.empleadoses = empleadoses;
-    }
-    public Set<Sucursalesxruta> getSucursalesxrutasForDestino() {
-        return this.sucursalesxrutasForDestino;
-    }
-    
-    public void setSucursalesxrutasForDestino(Set<Sucursalesxruta> sucursalesxrutasForDestino) {
-        this.sucursalesxrutasForDestino = sucursalesxrutasForDestino;
-    }
-    public Set<Viajes> getViajesesForDestino() {
+    public Set getViajesesForDestino() {
         return this.viajesesForDestino;
     }
     
-    public void setViajesesForDestino(Set<Viajes> viajesesForDestino) {
+    public void setViajesesForDestino(Set viajesesForDestino) {
         this.viajesesForDestino = viajesesForDestino;
     }
-    public Set<Sucursalesxruta> getSucursalesxrutasForOrigen() {
+    public Set getSucursalesxrutasForOrigen() {
         return this.sucursalesxrutasForOrigen;
     }
     
-    public void setSucursalesxrutasForOrigen(Set<Sucursalesxruta> sucursalesxrutasForOrigen) {
+    public void setSucursalesxrutasForOrigen(Set sucursalesxrutasForOrigen) {
         this.sucursalesxrutasForOrigen = sucursalesxrutasForOrigen;
     }
-    public Set<Viajes> getViajesesForOrigen() {
+    public Set getPaquetesesForOrigen() {
+        return this.paquetesesForOrigen;
+    }
+    
+    public void setPaquetesesForOrigen(Set paquetesesForOrigen) {
+        this.paquetesesForOrigen = paquetesesForOrigen;
+    }
+    public Set getViajesesForOrigen() {
         return this.viajesesForOrigen;
     }
     
-    public void setViajesesForOrigen(Set<Viajes> viajesesForOrigen) {
+    public void setViajesesForOrigen(Set viajesesForOrigen) {
         this.viajesesForOrigen = viajesesForOrigen;
+    }
+    public Set getSucursalesxrutasForDestino() {
+        return this.sucursalesxrutasForDestino;
+    }
+    
+    public void setSucursalesxrutasForDestino(Set sucursalesxrutasForDestino) {
+        this.sucursalesxrutasForDestino = sucursalesxrutasForDestino;
+    }
+    public Set getEmpleadoses() {
+        return this.empleadoses;
+    }
+    
+    public void setEmpleadoses(Set empleadoses) {
+        this.empleadoses = empleadoses;
+    }
+    public Set getRutasesForOrigen() {
+        return this.rutasesForOrigen;
+    }
+    
+    public void setRutasesForOrigen(Set rutasesForOrigen) {
+        this.rutasesForOrigen = rutasesForOrigen;
+    }
+    public Set getGerenteses() {
+        return this.gerenteses;
+    }
+    
+    public void setGerenteses(Set gerenteses) {
+        this.gerenteses = gerenteses;
+    }
+    public Set getRutasesForDestino() {
+        return this.rutasesForDestino;
+    }
+    
+    public void setRutasesForDestino(Set rutasesForDestino) {
+        this.rutasesForDestino = rutasesForDestino;
+    }
+    public Set getPaquetesesForDestino() {
+        return this.paquetesesForDestino;
+    }
+    
+    public void setPaquetesesForDestino(Set paquetesesForDestino) {
+        this.paquetesesForDestino = paquetesesForDestino;
     }
 
 
