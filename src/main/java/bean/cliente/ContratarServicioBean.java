@@ -6,6 +6,7 @@
 package bean.cliente;
 
 import DAO.ClienteImplements;
+import DAO.PaqueteImplements;
 import DAO.ServicioImplements;
 import DAO.SucursalesImplementa;
 import Pojo.Clientes;
@@ -198,8 +199,10 @@ public class ContratarServicioBean implements Serializable{
         paque.setDestinatarioTelefono(telefono);
         paque.setServicios(servi);
         paque.setPeso(peso);
-        paque.setSucursalesByDestino(new SucursalesImplementa().buscarSucursal(this.sucuSelect));
-        
+        paque.setSucursalesByDestino(new SucursalesImplementa().buscarSucursal(this.sucuDestinoSelec));
+        paque.setSucursalesByOrigen(new SucursalesImplementa().buscarSucursal(this.sucuSelect));
+        paque.setClientes(sesion.getClaseCliente());
+        new PaqueteImplements().insertarPaquete(paque);    
         
     }    
     

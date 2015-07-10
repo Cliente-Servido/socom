@@ -101,12 +101,12 @@ public class ConsultarSucursaless implements Serializable{
    
     
     public void cambioProvincia(){
-        System.out.println("llego provincia");
+        
         List<Localidades> igor=new LocalidadesImplementa().localidadesenProvincia(provinciaSeleccionada);
         for (Localidades igor1 : igor) {
             mapaLocalidades.put(igor1.getNombre(), (igor1.getIdLocalidad()).toString());
         }
-        System.out.println("salio cambio provincia");
+        
     
     }
 
