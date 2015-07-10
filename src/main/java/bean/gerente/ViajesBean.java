@@ -7,12 +7,15 @@ package bean.gerente;
 
 import DAO.CamionDao;
 import DAO.CamionImplements;
+import DAO.PaqueteDao;
+import DAO.PaqueteImplements;
 import DAO.SucursalesPorRutaDao;
 import DAO.SucursalesPorRutaImplements;
 import DAO.ViajesDao;
 import DAO.ViajesImplements;
 import Persistencia.HibernateUtil;
 import Pojo.Camiones;
+import Pojo.Paquetes;
 import Pojo.Rutas;
 import Pojo.Sucursalesxruta;
 import Pojo.Viajes;
@@ -47,6 +50,25 @@ public class ViajesBean implements Serializable {
     List<Viajes> listaViajes;
     Viajes viaje;
     String fechaLlegada;
+    int idViaje;
+    int idPaquete;
+    PaqueteDao linkDaoP;
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public int getIdViaje() {
+        return idViaje;
+    }
+
+    public void setIdViaje(int idViaje) {
+        this.idViaje = idViaje;
+    }
 
     public String getFechaLlegada() {
         return fechaLlegada;
@@ -118,8 +140,10 @@ public class ViajesBean implements Serializable {
     public void init() {
         linkDaoV=new ViajesImplements();
         linkDAO= new CamionImplements();
+        linkDaoP=new PaqueteImplements();
           linkDaoSXR= new SucursalesPorRutaImplements();
-          Viajes viaje=new Viajes();
+         viaje=new Viajes();
+          
     }
     
     public void crearViajes(){
@@ -173,6 +197,11 @@ public class ViajesBean implements Serializable {
           listaViajes= linkDaoV.buscarViajes(idCamion);
        
     }
+     
+     public void busquedaViajeId(){
+     viaje=linkDaoV.getViaje(idViaje);
+     
+     }
      public void modificar(){
         viaje.setFechaLlegada(transformarFecha(fechaLlegada));
         viaje.setFechaSalida(transformarFecha(fechaSalida));
@@ -194,7 +223,26 @@ public class ViajesBean implements Serializable {
 	}
         return date;
     } 
-         
+       
+    
+   public List<Paquetes> obtenerPaquetesViaje(){
+       List<Paquetes> paquetes = null;
+       /*
+   if(viaje.getPaqueteses()!=null){
+    paquetes= (List<Paquetes>) viaje.getPaqueteses();
+               
+               */
+
+   return paquetes;
+   }
+  
+   public void insertarPaquete(){
+       Paquetes paq= linkDaoP.getPaquete(idPaquete);
+       viaje.getPaqueteses().add(paq);
+       linkDaoV.modificarViaje(viaje);
+       
+   }
+   
      }
 
      

@@ -18,6 +18,7 @@ public interface PaqueteDao {
    public void insertarPaquete(Paquetes paquete);
    public void modificarPaquete(Paquetes paquete);
    public void eliminarPaquete(Paquetes paquete);
+   public  List<Paquetes> paqueteServicio(int idServicio);
    
     
 }

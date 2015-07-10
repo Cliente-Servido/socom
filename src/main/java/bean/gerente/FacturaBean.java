@@ -5,18 +5,11 @@ import DAO.FacturaImplements;
 import DAO.PaqueteDao;
 import DAO.PaqueteImplements;
 import DAO.RutaDao;
-import DAO.RutaImplements222;
 import DAO.SucursalesDAO;
-import DAO.SucursalesImplementa;
-import Persistencia.HibernateUtil;
-import Pojo.Clientes;
 import Pojo.Empleados;
 import Pojo.Facturas;
 import Pojo.Paquetes;
-import Pojo.Rutas;
-import Pojo.Sucursales;
 import Pojo.Usuarios;
-import Pojo.Viajes;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,9 +21,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 /**
  *
@@ -50,7 +40,6 @@ public class FacturaBean implements Serializable {
     }
     Facturas factura;
     List<Facturas> facturas;
-    Integer idCliente;
     List<Paquetes> paquetes;
     int idPaquete;
     PaqueteDao linkDaoP;
@@ -80,14 +69,6 @@ public class FacturaBean implements Serializable {
 
     public void setPaquetes(List<Paquetes> paquetes) {
         this.paquetes = paquetes;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
     }
 
   

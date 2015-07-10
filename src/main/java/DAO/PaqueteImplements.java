@@ -66,7 +66,6 @@ public class PaqueteImplements implements PaqueteDao{
             session=HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(paquete);
-            System.out.println("después de insertar el paquete");
             session.getTransaction().commit();
     }catch(HibernateException e){
         System.out.println(e.getMessage());
@@ -111,4 +110,24 @@ public class PaqueteImplements implements PaqueteDao{
         }
         }
     }
+    @Override
+     public  List<Paquetes> paqueteServicio(int idServicio){
+    Session session= null;
+    List<Paquetes> lista=null;
+    try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Paquetes where idServicio= :idServicio");
+        query.setParameter("idServicio", idServicio);
+        lista=(List<Paquetes>)query.list();
+    }catch(HibernateException e){
+    System.out.println(e.getMessage());
+    session.getTransaction().rollback();
+    }
+    finally {
+        if(session != null){
+        session.close();}
+    }return lista;
+    
+     }
+     
 }
