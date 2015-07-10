@@ -17,7 +17,10 @@ import Pojo.Rutas;
 import Pojo.Sucursalesxruta;
 import Pojo.Viajes;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -43,7 +46,24 @@ public class ViajesBean implements Serializable {
     int idCamion;
     List<Viajes> listaViajes;
     Viajes viaje;
+    String fechaLlegada;
 
+    public String getFechaLlegada() {
+        return fechaLlegada;
+    }
+
+    public void setFechaLlegada(String fechaLlegada) {
+        this.fechaLlegada = fechaLlegada;
+    }
+
+    public String getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(String fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+    String fechaSalida;
     public Viajes getViaje() {
         return viaje;
     }
@@ -154,11 +174,26 @@ public class ViajesBean implements Serializable {
        
     }
      public void modificar(){
-        
+        viaje.setFechaLlegada(transformarFecha(fechaLlegada));
+        viaje.setFechaSalida(transformarFecha(fechaSalida));
         linkDaoV.modificarViaje(viaje);
         viaje= new Viajes();
     }
      
+    public Date transformarFecha(String fecha){
+        
+    Date date=null;
+         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+ 
+		 date = formatter.parse(fecha);
+               
+ 
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+        return date;
+    } 
          
      }
 

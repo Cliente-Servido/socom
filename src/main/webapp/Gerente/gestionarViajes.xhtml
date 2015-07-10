@@ -63,7 +63,7 @@
                     </h:form>
              
               <h:form>
-                    <h4>Buscar camion por patente</h4>
+                    <h4>Buscar viajes por Id del Camion</h4>
                         <p:panelGrid columns="2"  >
                             <p:outputLabel value="ID camion"/>
                             <p:inputText value="#{viajesBean.idCamion}" />
@@ -84,16 +84,16 @@ rowsPerPageTemplate="10"
                     <h:outputText value="#{lv.idViaje}"/>
                 </p:column>
                 <p:column headerText="Fecha de llegada">
-                    <h:outputText value="#{lv.fechaLlegada}"/>
+                    <h:outputText value="#{viajesBean.fechaLlegada}"/>
                 </p:column>
-                <p:column headerText="Fecha de Llegada">
-                    <h:outputText value="#{lv.fechaSalida}"/>
+                <p:column headerText="Fecha de Salida">
+                    <h:outputText value="#{viajesBean.fechaSalida}"/>
+                </p:column>
+                       <p:column headerText="Horario de Llegada">
+                           <h:outputText value="#{lv.fechaLlegada}"/>
                 </p:column>
                        <p:column headerText="Horario de Salida">
-                    <h:outputText value="#{lv.horarioLlegada}"/>
-                </p:column>
-                       <p:column headerText="Horario de Salida">
-                    <h:outputText value="#{lv.horarioSalida}"/>
+                           <h:outputText value="#{lv.horaSalida}"/>
                 </p:column>
                 <p:column headerText="Accion">
                     <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificarViajes"  >
@@ -112,8 +112,13 @@ rowsPerPageTemplate="10"
             <h:form id="formModificarViajes">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Fecha de llegada"/>
-                    <p:inputText value="#{viajesBean.viaje.fechaLlegada}" />
-                
+                    <p:inputText value="#{viajesBean.fechaLlegada}" />
+                     <p:outputLabel value="Fecha de Salida"/>
+                    <p:inputText value="#{viajesBean.fechaSalida}" />
+                     <p:outputLabel value="Horario de llegada"/>
+                    <p:inputText value="#{viajesBean.viaje.horaLlegada}" />
+                     <p:outputLabel value="Horario de Salida"/>
+                     <p:inputText value="#{viajesBean.viaje.horaSalida}" />
                 </p:panelGrid>
                 <p:commandButton actionListener="#{viajesBean.modificar()}" value="Modificar Viaje"   update=":formMostrarViajes"
                                  onclick="PF('dlgmodificar').hide();"/>

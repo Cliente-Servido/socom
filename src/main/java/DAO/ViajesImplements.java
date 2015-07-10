@@ -7,6 +7,9 @@ package DAO;
 
 import Persistencia.HibernateUtil;
 import Pojo.Viajes;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -116,7 +119,7 @@ public class ViajesImplements implements ViajesDao {
     List<Viajes> lista=null;
     try{
         session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from Viajes where idCamion= :idCamion order by idViaje des");
+        Query query=session.createQuery("from Viajes where idCamion= :idCamion order by idViaje desc");
         query.setParameter("idCamion", idCamion);
         lista=(List<Viajes>)query.list();
         
@@ -129,4 +132,5 @@ public class ViajesImplements implements ViajesDao {
     }return lista;
 
 }
-    }
+    
+}

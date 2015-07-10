@@ -42,7 +42,8 @@ public class FiltroUrl implements Filter{
         String[] urlPermitidaSinSesion=new String[]
         {
           
-            "faces/Gerente/index.xhtml"
+            "faces/Gerente/index.xhtml",
+            
         };
         
         boolean redireccionarPeticion;
