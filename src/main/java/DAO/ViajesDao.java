@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface ViajesDao {
     public List<Viajes> mostrarViajes();
+    public List<Viajes> buscarViajes(int idCamion);
    public Viajes getViaje(Integer id);
    public void insertarViaje(Viajes viaje);
    public void modificarViaje(Viajes viaje);

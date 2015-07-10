@@ -106,9 +106,27 @@ public class ViajesImplements implements ViajesDao {
         if(session!=null){
             session.close();
         }
-        }
+        }}
+    
+
+  
+    @Override
+    public List<Viajes> buscarViajes(int idCamion){
+    Session session= null;
+    List<Viajes> lista=null;
+    try{
+        session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("from Viajes where idCamion= :idCamion order by idViaje des");
+        query.setParameter("idCamion", idCamion);
+        lista=(List<Viajes>)query.list();
+        
+    }catch(HibernateException e){
+    System.out.println("Error catch");    
     }
-
-
+    finally {
+        if(session != null){
+        session.close();}
+    }return lista;
 
 }
+    }

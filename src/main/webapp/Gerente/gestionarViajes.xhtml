@@ -10,12 +10,116 @@
 
         <ui:composition template="./plantillas/plantilla.xhtml">
          <ui:define name="content"> 
+             <h3>CAMIONES</h3>
+                <h:form>
+                    <h4>Buscar camion por patente</h4>
+                        <p:panelGrid columns="2"  >
+                            <p:outputLabel value="Patente"/>
+                            <p:inputText value="#{viajesBean.dominio}" />
+                            <p:commandButton actionListener="#{viajesBean.busquedaCamion()}" value="Buscar"  update=":formMostrar" />
+                        </p:panelGrid>
+                </h:form>
+             
+              <h:form id="formMostrar">
+                  <p:dataTable var="cam" value="#{viajesBean.camionesAct}"
+                         emptyMessage="No hay camiones disponibles"
+            paginator="true" rows="10" paginatorPosition="top"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+            {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="10"
+                         >
+                <p:column headerText="ID de camion">
+                    <h:outputText value="#{cam.idCamion}"/>
+                </p:column>
+                      
+                <p:column headerText="Dominio de camion">
+                    <h:outputText value="#{cam.dominio}"/>
+                </p:column>
+                      <p:column headerText="Id Ruta">
+                          <h:outputText value="#{cam.rutas.idRuta}"/>
+                </p:column>
+                      
+                
+                
+            </p:dataTable>
+            
+        </h:form>
+             <h4>Insertar Viajes</h4>
+                        
+                        <h:form id="formInsertarRutas">
+                        <p:panelGrid columns="2"  >
+                            
+                            <p:outputLabel value="ID ruta"/>
+                            <p:inputText value="#{viajesBean.idRuta}"/>
+                            
+                            <p:outputLabel value="Dominio"/>
+                            <p:inputText value="#{viajesBean.dominio}"/>
+                            
+                            
+                            
+                        </p:panelGrid>
+                            <h:commandButton value="Crear Viajes" action="#{viajesBean.crearViajes()}" />
+                                              
+                    </h:form>
+             
+              <h:form>
+                    <h4>Buscar camion por patente</h4>
+                        <p:panelGrid columns="2"  >
+                            <p:outputLabel value="ID camion"/>
+                            <p:inputText value="#{viajesBean.idCamion}" />
+                            <p:commandButton actionListener="#{viajesBean.busquedaViajes()}" value="Buscar Viajes"  update=":formMostrarViajes" />
+                        </p:panelGrid>
+                </h:form>
              
              
-             
-             
-             
-             
+               <h:form id="formMostrarViajes">
+                   <p:dataTable var="lv" value="#{viajesBean.listaViajes}"
+                         emptyMessage="No hay viajes disponibles"
+paginator="true" rows="10" paginatorPosition="top"
+paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+{PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+rowsPerPageTemplate="10"
+                         >
+                <p:column headerText="Id Viajes">
+                    <h:outputText value="#{lv.idViaje}"/>
+                </p:column>
+                <p:column headerText="Fecha de llegada">
+                    <h:outputText value="#{lv.fechaLlegada}"/>
+                </p:column>
+                <p:column headerText="Fecha de Llegada">
+                    <h:outputText value="#{lv.fechaSalida}"/>
+                </p:column>
+                       <p:column headerText="Horario de Salida">
+                    <h:outputText value="#{lv.horarioLlegada}"/>
+                </p:column>
+                       <p:column headerText="Horario de Salida">
+                    <h:outputText value="#{lv.horarioSalida}"/>
+                </p:column>
+                <p:column headerText="Accion">
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"  update=":formModificarViajes"  >
+                        <f:setPropertyActionListener target="#{viajesBean.viaje}" value="#{lv}"/>
+                    </p:commandButton>
+                   
+                </p:column>
+                
+                
+            </p:dataTable>
+            
+        </h:form>
+        
+        <p:dialog id="dlg" header="Modificar Viaje" showEffect="explode" hideEffect="bounce"
+                    widgetVar="dlgmodificar" resizable="false" minWidth="200">
+            <h:form id="formModificarViajes">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Fecha de llegada"/>
+                    <p:inputText value="#{viajesBean.viaje.fechaLlegada}" />
+                
+                </p:panelGrid>
+                <p:commandButton actionListener="#{viajesBean.modificar()}" value="Modificar Viaje"   update=":formMostrarViajes"
+                                 onclick="PF('dlgmodificar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
              
              
              
